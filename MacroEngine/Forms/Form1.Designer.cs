@@ -33,19 +33,20 @@
             this.stopButton = new System.Windows.Forms.Button();
             this.recordButton = new System.Windows.Forms.Button();
             this.InputBox = new System.Windows.Forms.GroupBox();
-            this.mouseActionButton = new System.Windows.Forms.Button();
-            this.keyboardActionButton = new System.Windows.Forms.Button();
             this.delayActionButton = new System.Windows.Forms.Button();
+            this.keyboardActionButton = new System.Windows.Forms.Button();
+            this.mouseActionButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.macroListBox = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.macroGrid = new System.Windows.Forms.DataGridView();
             this.Action = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.refreshButton = new System.Windows.Forms.Button();
             this.macroBox.SuspendLayout();
             this.InputBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -105,24 +106,6 @@
             this.InputBox.TabStop = false;
             this.InputBox.Text = "Input";
             // 
-            // mouseActionButton
-            // 
-            this.mouseActionButton.Location = new System.Drawing.Point(9, 21);
-            this.mouseActionButton.Name = "mouseActionButton";
-            this.mouseActionButton.Size = new System.Drawing.Size(100, 100);
-            this.mouseActionButton.TabIndex = 1;
-            this.mouseActionButton.Text = "Insert Mouse Action";
-            this.mouseActionButton.UseVisualStyleBackColor = true;
-            // 
-            // keyboardActionButton
-            // 
-            this.keyboardActionButton.Location = new System.Drawing.Point(115, 21);
-            this.keyboardActionButton.Name = "keyboardActionButton";
-            this.keyboardActionButton.Size = new System.Drawing.Size(100, 100);
-            this.keyboardActionButton.TabIndex = 2;
-            this.keyboardActionButton.Text = "Insert Keyboard Action";
-            this.keyboardActionButton.UseVisualStyleBackColor = true;
-            // 
             // delayActionButton
             // 
             this.delayActionButton.Location = new System.Drawing.Point(221, 21);
@@ -132,9 +115,30 @@
             this.delayActionButton.Text = "Insert Delay (ms)";
             this.delayActionButton.UseVisualStyleBackColor = true;
             // 
+            // keyboardActionButton
+            // 
+            this.keyboardActionButton.Location = new System.Drawing.Point(115, 21);
+            this.keyboardActionButton.Name = "keyboardActionButton";
+            this.keyboardActionButton.Size = new System.Drawing.Size(100, 100);
+            this.keyboardActionButton.TabIndex = 2;
+            this.keyboardActionButton.Text = "Insert Keyboard Action";
+            this.keyboardActionButton.UseVisualStyleBackColor = true;
+            this.keyboardActionButton.Click += new System.EventHandler(this.keyboardActionButton_Click);
+            // 
+            // mouseActionButton
+            // 
+            this.mouseActionButton.Location = new System.Drawing.Point(9, 21);
+            this.mouseActionButton.Name = "mouseActionButton";
+            this.mouseActionButton.Size = new System.Drawing.Size(100, 100);
+            this.mouseActionButton.TabIndex = 1;
+            this.mouseActionButton.Text = "Insert Mouse Action";
+            this.mouseActionButton.UseVisualStyleBackColor = true;
+            this.mouseActionButton.Click += new System.EventHandler(this.mouseActionButton_Click);
+            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.refreshButton);
+            this.groupBox1.Controls.Add(this.macroListBox);
             this.groupBox1.Location = new System.Drawing.Point(665, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(135, 130);
@@ -142,14 +146,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Manager";
             // 
-            // comboBox1
+            // macroListBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 60);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(114, 24);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.Text = "Macro List";
+            this.macroListBox.FormattingEnabled = true;
+            this.macroListBox.Location = new System.Drawing.Point(12, 60);
+            this.macroListBox.Name = "macroListBox";
+            this.macroListBox.Size = new System.Drawing.Size(114, 24);
+            this.macroListBox.TabIndex = 0;
+            this.macroListBox.Text = "Macro List";
+            this.macroListBox.SelectedIndexChanged += new System.EventHandler(this.macroListBox_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -162,15 +167,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Edit";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(10, 31);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 30);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Edit";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(10, 67);
@@ -179,6 +175,15 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(10, 31);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(119, 30);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Edit";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -204,6 +209,7 @@
             this.macroGrid.RowTemplate.Height = 24;
             this.macroGrid.Size = new System.Drawing.Size(915, 271);
             this.macroGrid.TabIndex = 0;
+            this.macroGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.macroGrid_CellContentClick);
             // 
             // Action
             // 
@@ -223,10 +229,20 @@
             // 
             // Label
             // 
-            this.Label.HeaderText = "Label";
+            this.Label.HeaderText = "Description";
             this.Label.MinimumWidth = 6;
             this.Label.Name = "Label";
             this.Label.Width = 300;
+            // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(10, 24);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(119, 30);
+            this.refreshButton.TabIndex = 1;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
             // Form1
             // 
@@ -264,7 +280,7 @@
         private System.Windows.Forms.Button keyboardActionButton;
         private System.Windows.Forms.Button mouseActionButton;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox macroListBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
@@ -273,6 +289,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Action;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.DataGridViewTextBoxColumn Label;
+        private System.Windows.Forms.Button refreshButton;
     }
 }
 

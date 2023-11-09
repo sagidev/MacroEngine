@@ -46,19 +46,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomForms\MenuButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Macro\Action.cs" />
+    <Compile Include="Macro\Actions\Keyboard\KeyboardAction.cs" />
+    <Compile Include="Macro\Actions\Keyboard\KeyboardActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Macro\Actions\Keyboard\KeyboardActionForm.Designer.cs">
+      <DependentUpon>KeyboardActionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Macro\Actions\MouseAction.cs" />
+    <Compile Include="Macro\Actions\WaitAction.cs" />
+    <Compile Include="Macro\Macro.cs" />
+    <Compile Include="Macro\MacroManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Macro\Actions\Keyboard\KeyboardActionForm.resx">
+      <DependentUpon>KeyboardActionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
