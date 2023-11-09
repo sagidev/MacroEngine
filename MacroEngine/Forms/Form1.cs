@@ -25,6 +25,15 @@ namespace MacroEngine
             MacroManager.Initialize();
         }
 
+        public void FillMacroGrid()
+        {
+            macroGrid.Rows.Clear();
+            foreach (Action action in MacroManager.macroList[MacroManager.currentMacroIndex].actionList)
+            {
+                macroGrid.Rows.Add(action.ActionType, action.Value, action.Description);
+            }
+        }
+
         private void mouseActionButton_Click(object sender, EventArgs e)
         {
             MouseActionForm mouseActionForm = new MouseActionForm();
@@ -39,6 +48,20 @@ namespace MacroEngine
             keyboardForm.ShowDialog();
         }
 
+        private void macroListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MacroManager.currentMacroIndex = macroListBox.SelectedIndex;
+        }
+
+        private void delayActionButton_Click(object sender, EventArgs e)
+        {
+            DelayActionForm delayActionForm = new DelayActionForm();
+            delayActionForm.SubmitButtonClicked += DelayActionForm_SubmitButtonClicked;
+            delayActionForm.ShowDialog();
+        }
+
+        // --- Events ---
+
         private void MouseActionForm_SubmitButtonClicked(object sender, EventArgs e)
         {
             FillMacroGrid();
@@ -52,27 +75,6 @@ namespace MacroEngine
         private void DelayActionForm_SubmitButtonClicked(object sender, EventArgs e)
         {
             FillMacroGrid();
-        }
-
-        private void macroListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MacroManager.currentMacroIndex = macroListBox.SelectedIndex;
-        }
-
-        public void FillMacroGrid()
-        {
-            macroGrid.Rows.Clear();
-            foreach (Action action in MacroManager.macroList[MacroManager.currentMacroIndex].actionList)
-            {
-                macroGrid.Rows.Add(action.ActionType, action.Value, action.Description, action.HoldTime);
-            }
-        }
-
-        private void delayActionButton_Click(object sender, EventArgs e)
-        {
-            DelayActionForm delayActionForm = new DelayActionForm();
-            delayActionForm.SubmitButtonClicked += DelayActionForm_SubmitButtonClicked;
-            delayActionForm.ShowDialog();
         }
     }
 }

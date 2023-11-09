@@ -8,23 +8,24 @@ namespace MacroEngine.Macro.Actions
 {
     public class KeyboardAction : Action
     {
-        public event EventHandler SubmitButtonClicked;
+        public KeyboardActionType keyboardActionType = KeyboardActionType.None;
+        public string keyboardKey = "None";
 
         public enum KeyboardActionType
         {
+            None,
             PressAndRelease,
             HoldAndRelease
         }
 
-        public KeyboardAction(string value, string description, KeyboardActionType type, int holdTime = 0)
+        public KeyboardAction(string value, string description, KeyboardActionType type, string key, int holdTime = 0)
         {
             ActionType = ActionType.Keyboard;
             Value = value;
             Description = description;
             HoldTime = holdTime;
             keyboardActionType = type;
+            keyboardKey = key;
         }
-
-        public KeyboardActionType keyboardActionType;
     }
 }

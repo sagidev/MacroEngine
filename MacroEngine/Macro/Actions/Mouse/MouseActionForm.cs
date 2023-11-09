@@ -11,34 +11,12 @@ using static MacroEngine.Macro.Actions.MouseAction;
 
 namespace MacroEngine.Macro.Actions.Mouse
 {
-    public enum MouseActionKey
-    {
-        None,
-        Left,
-        Middle,
-        Right
-    }
-
     public partial class MouseActionForm : Form
     {
         public event EventHandler SubmitButtonClicked;
 
-        private void submitButton_Click(object sender, EventArgs e)
-        {
-            // Get the result of the mouse action.
-            string result = GetResult();
-
-            // Raise the SubmitButtonClicked event.
-            SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
-        }
-
-        private string GetResult()
-        {
-            return "lol";
-        }
-
         private MouseActionKey mouseActionKey = MouseActionKey.None;
-        private MouseActionType mouseActionType;
+        private MouseActionType mouseActionType = MouseActionType.None;
 
         public MouseActionForm()
         {
@@ -112,6 +90,12 @@ namespace MacroEngine.Macro.Actions.Mouse
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            if (mouseActionKey == MouseActionKey.None || mouseActionType == MouseActionType.None)
+            {
+                MessageBox.Show("Please select a mouse key and action type.", "Invalid parameters");
+                return;
+            }
+
             string val = keyBox.Text;
             string description = mouseActionType.ToString();
             switch (mouseActionType)

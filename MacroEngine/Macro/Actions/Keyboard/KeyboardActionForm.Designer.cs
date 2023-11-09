@@ -87,6 +87,7 @@
             this.keyBox.Name = "keyBox";
             this.keyBox.Size = new System.Drawing.Size(92, 21);
             this.keyBox.TabIndex = 2;
+            this.keyBox.SelectedIndexChanged += new System.EventHandler(this.keyBox_SelectedIndexChanged);
             // 
             // addButton
             // 

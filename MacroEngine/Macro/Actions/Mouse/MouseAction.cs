@@ -10,10 +10,19 @@ namespace MacroEngine.Macro.Actions
     {
         public enum MouseActionType
         {
+            None,
             Move,
             Drag,
             Hold,
             Press
+        }
+
+        public enum MouseActionKey
+        {
+            None,
+            Left,
+            Middle,
+            Right
         }
 
         public MouseAction(string value, string description, MouseActionType type)
@@ -24,6 +33,6 @@ namespace MacroEngine.Macro.Actions
             mouseActionType = type;
         }
 
-        public MouseActionType mouseActionType;
+        public MouseActionType mouseActionType = MouseActionType.None;
     }
 }
