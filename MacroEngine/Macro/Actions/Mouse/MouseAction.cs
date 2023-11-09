@@ -8,11 +8,22 @@ namespace MacroEngine.Macro.Actions
 {
     public class MouseAction : Action
     {
-        public MouseAction(string value, string description)
+        public enum MouseActionType
+        {
+            Move,
+            Drag,
+            Hold,
+            Press
+        }
+
+        public MouseAction(string value, string description, MouseActionType type)
         {
             ActionType = ActionType.Mouse;
             Value = value;
             Description = description;
+            mouseActionType = type;
         }
+
+        public MouseActionType mouseActionType;
     }
 }

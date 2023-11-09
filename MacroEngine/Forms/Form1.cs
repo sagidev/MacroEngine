@@ -1,4 +1,6 @@
 ﻿using MacroEngine.Macro;
+using MacroEngine.Macro.Actions;
+using MacroEngine.Macro.Actions.Delay;
 using MacroEngine.Macro.Actions.Keyboard;
 using MacroEngine.Macro.Actions.Mouse;
 using System;
@@ -10,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Action = MacroEngine.Macro.Action;
 
 namespace MacroEngine
@@ -25,13 +28,30 @@ namespace MacroEngine
         private void mouseActionButton_Click(object sender, EventArgs e)
         {
             MouseActionForm mouseActionForm = new MouseActionForm();
+            mouseActionForm.SubmitButtonClicked += MouseActionForm_SubmitButtonClicked;
             mouseActionForm.ShowDialog();
         }
 
         private void keyboardActionButton_Click(object sender, EventArgs e)
         {
             KeyboardActionForm keyboardForm = new KeyboardActionForm();
+            keyboardForm.SubmitButtonClicked += KeyboardActionForm_SubmitButtonClicked;
             keyboardForm.ShowDialog();
+        }
+
+        private void MouseActionForm_SubmitButtonClicked(object sender, EventArgs e)
+        {
+            FillMacroGrid();
+        }
+
+        private void KeyboardActionForm_SubmitButtonClicked(object sender, EventArgs e)
+        {
+            FillMacroGrid();
+        }
+
+        private void DelayActionForm_SubmitButtonClicked(object sender, EventArgs e)
+        {
+            FillMacroGrid();
         }
 
         private void macroListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,14 +68,11 @@ namespace MacroEngine
             }
         }
 
-        private void macroGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void delayActionButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void refreshButton_Click(object sender, EventArgs e)
-        {
-            FillMacroGrid();
+            DelayActionForm delayActionForm = new DelayActionForm();
+            delayActionForm.SubmitButtonClicked += DelayActionForm_SubmitButtonClicked;
+            delayActionForm.ShowDialog();
         }
     }
 }

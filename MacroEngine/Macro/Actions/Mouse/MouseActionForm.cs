@@ -7,26 +7,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MacroEngine.Macro.Actions.MouseAction;
 
 namespace MacroEngine.Macro.Actions.Mouse
 {
     public enum MouseActionKey
     {
+        None,
         Left,
         Middle,
         Right
     }
-    public enum MouseActionType
-    {
-        Move,
-        Drag,
-        Hold,
-        Press
-    }
+
     public partial class MouseActionForm : Form
     {
-        MouseActionKey mouseActionKey;
-        MouseActionType mouseActionType;
+        public event EventHandler SubmitButtonClicked;
+
+        private void submitButton_Click(object sender, EventArgs e)
+        {
+            // Get the result of the mouse action.
+            string result = GetResult();
+
+            // Raise the SubmitButtonClicked event.
+            SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private string GetResult()
+        {
+            return "lol";
+        }
+
+        private MouseActionKey mouseActionKey = MouseActionKey.None;
+        private MouseActionType mouseActionType;
+
         public MouseActionForm()
         {
             InitializeComponent();
@@ -34,7 +47,7 @@ namespace MacroEngine.Macro.Actions.Mouse
 
         private void actionTypeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch(actionTypeBox.SelectedIndex)
+            switch (actionTypeBox.SelectedIndex)
             {
                 case 0:
                     mouseActionType = MouseActionType.Move;
@@ -44,6 +57,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                     xTextbox.Visible = true;
                     yTextbox.Visible = true;
                     break;
+
                 case 1:
                     mouseActionType = MouseActionType.Drag;
                     mouseDelayBar.Visible = false;
@@ -52,6 +66,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                     xTextbox.Visible = true;
                     yTextbox.Visible = true;
                     break;
+
                 case 2:
                     mouseActionType = MouseActionType.Press;
                     mouseDelayBar.Visible = false;
@@ -60,6 +75,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                     xTextbox.Visible = false;
                     yTextbox.Visible = false;
                     break;
+
                 case 3:
                     mouseActionType = MouseActionType.Hold;
                     mouseDelayBar.Visible = true;
@@ -83,9 +99,11 @@ namespace MacroEngine.Macro.Actions.Mouse
                 case 0:
                     mouseActionKey = MouseActionKey.Left;
                     break;
+
                 case 1:
                     mouseActionKey = MouseActionKey.Middle;
                     break;
+
                 case 2:
                     mouseActionKey = MouseActionKey.Right;
                     break;
@@ -95,31 +113,34 @@ namespace MacroEngine.Macro.Actions.Mouse
         private void addButton_Click(object sender, EventArgs e)
         {
             string val = keyBox.Text;
-            switch(mouseActionType)
+            string description = mouseActionType.ToString();
+            switch (mouseActionType)
             {
                 case MouseActionType.Move:
-                    
+                    val += "[" + xTextbox.Text + "," + yTextbox.Text + "]";
                     break;
+
                 case MouseActionType.Drag:
+                    val += "[" + xTextbox.Text + "," + yTextbox.Text + "]";
                     break;
+
                 case MouseActionType.Press:
                     break;
+
                 case MouseActionType.Hold:
+                    val += "[" + mouseDelayBar.Value + "ms]";
                     break;
             }
 
-            MouseAction action = new MouseAction(val, mouseActionType.ToString());
-            if (actionTypeBox.SelectedIndex == 0)
-            {
-                KeyboardAction action = new KeyboardAction(val, "Click", KeyboardAction.KeyboardActionType.PressAndRelease, 0);
-                MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
-            }
-            else
-            {
-                KeyboardAction action = new KeyboardAction(val + "[" + keyboardDelayBar.Value + "ms]", "Hold", KeyboardAction.KeyboardActionType.HoldAndRelease);
-                MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
-            }
+            MouseAction action = new MouseAction(val, description, mouseActionType);
+            MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
+            SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
             this.Close();
+        }
+
+        private void mouseDelayBar_Scroll(object sender, EventArgs e)
+        {
+            barLabel.Text = mouseDelayBar.Value + "ms";
         }
     }
 }

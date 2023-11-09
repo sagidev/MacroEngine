@@ -24,6 +24,7 @@ namespace MacroEngine.Macro.Actions.Keyboard
 
         private void keyboardDelayBar_Scroll(object sender, EventArgs e)
         {
+            barLabel.Text = keyboardDelayBar.Value + "ms";
         }
 
         private void actionTypeBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,10 +49,13 @@ namespace MacroEngine.Macro.Actions.Keyboard
             }
             else
             {
-                KeyboardAction action = new KeyboardAction(val + "[" + keyboardDelayBar.Value + "ms]", "Hold",KeyboardAction.KeyboardActionType.HoldAndRelease);
+                KeyboardAction action = new KeyboardAction(val + "[" + keyboardDelayBar.Value + "ms]", "Hold", KeyboardAction.KeyboardActionType.HoldAndRelease);
                 MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
             }
+            SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
             this.Close();
         }
+
+        public event EventHandler SubmitButtonClicked;
     }
 }

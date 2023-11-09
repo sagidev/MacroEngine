@@ -11,7 +11,7 @@ namespace MacroEngine.Macro
     {
         public static int currentMacroIndex = 0;
         public static List<Macro> macroList;
-        
+
         public static void Initialize()
         {
             macroList = new List<Macro>();
