@@ -29,9 +29,13 @@ namespace MacroEngine.Macro.Actions.Keyboard
         private void actionTypeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (actionTypeBox.SelectedIndex == 1)
+            {
                 keyboardDelayBar.Visible = true;
+            }
             else
+            {
                 keyboardDelayBar.Visible = false;
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -39,12 +43,12 @@ namespace MacroEngine.Macro.Actions.Keyboard
             string val = keyBox.Text;
             if (actionTypeBox.SelectedIndex == 0)
             {
-                KeyboardAction action = new KeyboardAction(val, "Click", 0);
+                KeyboardAction action = new KeyboardAction(val, "Click", KeyboardAction.KeyboardActionType.PressAndRelease, 0);
                 MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
             }
             else
             {
-                KeyboardAction action = new KeyboardAction(val + "[" + keyboardDelayBar.Value + "ms]", "Hold");
+                KeyboardAction action = new KeyboardAction(val + "[" + keyboardDelayBar.Value + "ms]", "Hold",KeyboardAction.KeyboardActionType.HoldAndRelease);
                 MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
             }
             this.Close();

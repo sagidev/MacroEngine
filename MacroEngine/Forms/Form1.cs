@@ -1,5 +1,6 @@
 ﻿using MacroEngine.Macro;
 using MacroEngine.Macro.Actions.Keyboard;
+using MacroEngine.Macro.Actions.Mouse;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,8 @@ namespace MacroEngine
 
         private void mouseActionButton_Click(object sender, EventArgs e)
         {
-
+            MouseActionForm mouseActionForm = new MouseActionForm();
+            mouseActionForm.ShowDialog();
         }
 
         private void keyboardActionButton_Click(object sender, EventArgs e)

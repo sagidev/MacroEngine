@@ -21,8 +21,8 @@ namespace MacroEngine.Macro
         public static Macro GenerateTemplateMacro()
         {
             Macro macro = new Macro("Template");
-            KeyboardAction k1 = new KeyboardAction("K", "Press", 0);
-            KeyboardAction k2 = new KeyboardAction("D", "Hold", 1000);
+            KeyboardAction k1 = new KeyboardAction("K", "Press", KeyboardAction.KeyboardActionType.PressAndRelease, 0);
+            KeyboardAction k2 = new KeyboardAction("D", "Hold", KeyboardAction.KeyboardActionType.HoldAndRelease, 1000);
             macro.AddAction(k1);
             macro.AddAction(k2);
 
