@@ -39,40 +39,41 @@
             // barLabel
             // 
             this.barLabel.AutoSize = true;
-            this.barLabel.Location = new System.Drawing.Point(172, 67);
+            this.barLabel.Location = new System.Drawing.Point(229, 82);
+            this.barLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.barLabel.Name = "barLabel";
-            this.barLabel.Size = new System.Drawing.Size(13, 13);
+            this.barLabel.Size = new System.Drawing.Size(14, 16);
             this.barLabel.TabIndex = 17;
             this.barLabel.Text = "0";
             // 
             // delayBar
             // 
             this.delayBar.LargeChange = 200;
-            this.delayBar.Location = new System.Drawing.Point(7, 64);
-            this.delayBar.Margin = new System.Windows.Forms.Padding(2);
+            this.delayBar.Location = new System.Drawing.Point(9, 79);
+            this.delayBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.delayBar.Maximum = 5000;
             this.delayBar.Name = "delayBar";
-            this.delayBar.Size = new System.Drawing.Size(159, 45);
+            this.delayBar.Size = new System.Drawing.Size(212, 56);
             this.delayBar.SmallChange = 50;
             this.delayBar.TabIndex = 14;
             this.delayBar.Scroll += new System.EventHandler(this.delayBar_Scroll);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(88, 113);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Location = new System.Drawing.Point(117, 139);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(77, 30);
+            this.button2.Size = new System.Drawing.Size(103, 37);
             this.button2.TabIndex = 13;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(7, 113);
-            this.addButton.Margin = new System.Windows.Forms.Padding(2);
+            this.addButton.Location = new System.Drawing.Point(9, 139);
+            this.addButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(77, 30);
+            this.addButton.Size = new System.Drawing.Size(103, 37);
             this.addButton.TabIndex = 12;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
@@ -82,25 +83,27 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(48, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(64, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 24);
+            this.label1.Size = new System.Drawing.Size(139, 29);
             this.label1.TabIndex = 9;
             this.label1.Text = "Insert Delay";
             // 
             // DelayActionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(227, 171);
+            this.ClientSize = new System.Drawing.Size(303, 210);
             this.Controls.Add(this.barLabel);
             this.Controls.Add(this.delayBar);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximizeBox = false;
             this.Name = "DelayActionForm";
-            this.Text = "DelayActionForm";
+            this.ShowIcon = false;
+            this.Text = "Add Delay Action";
             ((System.ComponentModel.ISupportInitialize)(this.delayBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

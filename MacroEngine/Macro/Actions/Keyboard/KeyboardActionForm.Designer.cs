@@ -156,9 +156,11 @@
             this.Controls.Add(this.actionTypeBox);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "KeyboardActionForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "KeyboardActionForm";
+            this.Text = "Add Keyboard Action";
             ((System.ComponentModel.ISupportInitialize)(this.keyboardDelayBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
