@@ -32,6 +32,8 @@ namespace MacroEngine
         public void FillMacroGrid()
         {
             macroGrid.Rows.Clear();
+            if (MacroManager.macroList.Count <= 0)
+                return;
             foreach (Action action in MacroManager.macroList[MacroManager.currentMacroIndex].actionList)
             {
                 macroGrid.Rows.Add(action.ActionType, action.Value, action.Description);
@@ -64,6 +66,7 @@ namespace MacroEngine
             delayActionForm.SubmitButtonClicked += DelayActionForm_SubmitButtonClicked;
             delayActionForm.ShowDialog();
         }
+        
 
         // --- Events ---
 

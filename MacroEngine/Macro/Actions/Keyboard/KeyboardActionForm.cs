@@ -58,16 +58,19 @@ namespace MacroEngine.Macro.Actions.Keyboard
             }
 
             string val = keyBox.Text;
-            if (actionTypeBox.SelectedIndex == 0)
+            string desc = "";
+            switch (keyboardActionType)
             {
-                KeyboardAction action = new KeyboardAction(val, "Click", keyboardActionType, keyboardKey);
-                MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
+                case KeyboardActionType.PressAndRelease:
+                    desc += "Press and Release";
+                    break;
+                case KeyboardActionType.HoldAndRelease:
+                    val += " [" + keyboardDelayBar.Value.ToString() + "ms]";
+                    desc += "Hold and Release";
+                    break;
             }
-            else
-            {
-                KeyboardAction action = new KeyboardAction(val + "[" + keyboardDelayBar.Value + "ms]", "Hold", keyboardActionType, keyboardKey, keyboardDelayBar.Value);
-                MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
-            }
+            KeyboardAction action = new KeyboardAction(val, desc, keyboardActionType, keyboardKey);
+            MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
             SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
             this.Close();
         }

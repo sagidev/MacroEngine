@@ -48,6 +48,7 @@
             this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createNewMacroBtn = new System.Windows.Forms.Button();
             this.deleteMacroBtn = new System.Windows.Forms.Button();
+            this.moveBtn = new System.Windows.Forms.Button();
             this.macroBox.SuspendLayout();
             this.InputBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -175,6 +176,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.moveBtn);
             this.groupBox2.Controls.Add(this.deleteBtn);
             this.groupBox2.Controls.Add(this.editBtn);
             this.groupBox2.Location = new System.Drawing.Point(797, 14);
@@ -184,11 +186,11 @@
             this.groupBox2.Size = new System.Drawing.Size(141, 130);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Edit";
+            this.groupBox2.Text = "Edit Macro";
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(11, 56);
+            this.deleteBtn.Location = new System.Drawing.Point(11, 91);
             this.deleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(119, 30);
@@ -292,6 +294,16 @@
             this.deleteMacroBtn.UseVisualStyleBackColor = true;
             this.deleteMacroBtn.Click += new System.EventHandler(this.deleteMacroBtn_Click);
             // 
+            // moveBtn
+            // 
+            this.moveBtn.Location = new System.Drawing.Point(11, 56);
+            this.moveBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.moveBtn.Name = "moveBtn";
+            this.moveBtn.Size = new System.Drawing.Size(119, 30);
+            this.moveBtn.TabIndex = 2;
+            this.moveBtn.Text = "Move";
+            this.moveBtn.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -340,6 +352,7 @@
         public System.Windows.Forms.DataGridView macroGrid;
         private System.Windows.Forms.Button deleteMacroBtn;
         private System.Windows.Forms.Button createNewMacroBtn;
+        private System.Windows.Forms.Button moveBtn;
     }
 }
 
