@@ -54,6 +54,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Input\Keyboard.cs" />
+    <Compile Include="Input\Mouse.cs" />
     <Compile Include="Macro\Action.cs" />
     <Compile Include="Macro\Actions\Delay\DelayAction.cs" />
     <Compile Include="Macro\Actions\Delay\DelayActionForm.cs">
