@@ -108,5 +108,10 @@ namespace MacroEngine
             macroListBox.SelectedIndex = MacroManager.currentMacroIndex;
             FillMacroGrid();
         }
+
+        private void playButton_Click(object sender, EventArgs e)
+        {
+            MacroManager.macroList[MacroManager.currentMacroIndex].Play();
+        }
     }
 }
