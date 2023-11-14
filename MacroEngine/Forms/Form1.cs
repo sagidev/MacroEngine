@@ -23,6 +23,10 @@ namespace MacroEngine
         {
             InitializeComponent();
             MacroManager.Initialize();
+            macroBox.Text = MacroManager.macroList[MacroManager.currentMacroIndex].Name;
+            macroListBox.Items.Add(MacroManager.macroList[MacroManager.macroList.Count - 1].Name);
+            macroListBox.SelectedIndex = MacroManager.currentMacroIndex;
+            FillMacroGrid();
         }
 
         public void FillMacroGrid()
@@ -51,6 +55,7 @@ namespace MacroEngine
         private void macroListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             MacroManager.currentMacroIndex = macroListBox.SelectedIndex;
+            FillMacroGrid();
         }
 
         private void delayActionButton_Click(object sender, EventArgs e)
@@ -74,6 +79,30 @@ namespace MacroEngine
 
         private void DelayActionForm_SubmitButtonClicked(object sender, EventArgs e)
         {
+            FillMacroGrid();
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            MacroManager.macroList[MacroManager.currentMacroIndex].actionList.RemoveAt(macroGrid.SelectedRows[0].Index);
+            FillMacroGrid();
+        }
+
+        private void createNewMacroBtn_Click(object sender, EventArgs e)
+        {
+            MacroManager.macroList.Add(new Macro.Macro("Macro"+ (MacroManager.macroList.Count + 1).ToString()));
+            macroListBox.Items.Add(MacroManager.macroList[MacroManager.macroList.Count - 1].Name);
+            MacroManager.currentMacroIndex = MacroManager.macroList.Count - 1;
+            macroListBox.SelectedIndex = MacroManager.currentMacroIndex;
+            FillMacroGrid();
+        }
+
+        private void deleteMacroBtn_Click(object sender, EventArgs e)
+        {
+            MacroManager.macroList.RemoveAt(MacroManager.currentMacroIndex);
+            macroListBox.Items.RemoveAt(MacroManager.currentMacroIndex);
+            MacroManager.currentMacroIndex = MacroManager.macroList.Count - 1;
+            macroListBox.SelectedIndex = MacroManager.currentMacroIndex;
             FillMacroGrid();
         }
     }
