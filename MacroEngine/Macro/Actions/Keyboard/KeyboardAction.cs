@@ -27,5 +27,10 @@ namespace MacroEngine.Macro.Actions
             keyboardActionType = type;
             keyboardKey = key;
         }
+
+        public int KeyboardKeyToInt(string key)
+        {
+            
+        }
     }
 }
