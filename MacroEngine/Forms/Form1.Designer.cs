@@ -49,6 +49,7 @@
             this.createNewMacroBtn = new System.Windows.Forms.Button();
             this.deleteMacroBtn = new System.Windows.Forms.Button();
             this.moveBtn = new System.Windows.Forms.Button();
+            this.colorActionButton = new System.Windows.Forms.Button();
             this.macroBox.SuspendLayout();
             this.InputBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -59,7 +60,7 @@
             // 
             // playButton
             // 
-            this.playButton.Location = new System.Drawing.Point(5, 21);
+            this.playButton.Location = new System.Drawing.Point(6, 21);
             this.playButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(100, 100);
@@ -103,6 +104,7 @@
             // 
             // InputBox
             // 
+            this.InputBox.Controls.Add(this.colorActionButton);
             this.InputBox.Controls.Add(this.delayActionButton);
             this.InputBox.Controls.Add(this.keyboardActionButton);
             this.InputBox.Controls.Add(this.mouseActionButton);
@@ -110,7 +112,7 @@
             this.InputBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InputBox.Name = "InputBox";
             this.InputBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.InputBox.Size = new System.Drawing.Size(333, 130);
+            this.InputBox.Size = new System.Drawing.Size(437, 130);
             this.InputBox.TabIndex = 2;
             this.InputBox.TabStop = false;
             this.InputBox.Text = "Input";
@@ -153,7 +155,7 @@
             this.groupBox1.Controls.Add(this.deleteMacroBtn);
             this.groupBox1.Controls.Add(this.createNewMacroBtn);
             this.groupBox1.Controls.Add(this.macroListBox);
-            this.groupBox1.Location = new System.Drawing.Point(665, 14);
+            this.groupBox1.Location = new System.Drawing.Point(772, 15);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -179,7 +181,7 @@
             this.groupBox2.Controls.Add(this.moveBtn);
             this.groupBox2.Controls.Add(this.deleteBtn);
             this.groupBox2.Controls.Add(this.editBtn);
-            this.groupBox2.Location = new System.Drawing.Point(797, 14);
+            this.groupBox2.Location = new System.Drawing.Point(903, 14);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -216,7 +218,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(927, 289);
+            this.groupBox3.Size = new System.Drawing.Size(1032, 380);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             // 
@@ -244,7 +246,7 @@
             this.macroGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.macroGrid.ShowCellToolTips = false;
             this.macroGrid.ShowEditingIcon = false;
-            this.macroGrid.Size = new System.Drawing.Size(921, 270);
+            this.macroGrid.Size = new System.Drawing.Size(1026, 361);
             this.macroGrid.TabIndex = 0;
             // 
             // Action
@@ -304,12 +306,22 @@
             this.moveBtn.Text = "Move";
             this.moveBtn.UseVisualStyleBackColor = true;
             // 
+            // colorActionButton
+            // 
+            this.colorActionButton.Location = new System.Drawing.Point(327, 21);
+            this.colorActionButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.colorActionButton.Name = "colorActionButton";
+            this.colorActionButton.Size = new System.Drawing.Size(100, 100);
+            this.colorActionButton.TabIndex = 4;
+            this.colorActionButton.Text = "Insert Color Detection";
+            this.colorActionButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(952, 450);
+            this.ClientSize = new System.Drawing.Size(1058, 540);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -353,6 +365,7 @@
         private System.Windows.Forms.Button deleteMacroBtn;
         private System.Windows.Forms.Button createNewMacroBtn;
         private System.Windows.Forms.Button moveBtn;
+        private System.Windows.Forms.Button colorActionButton;
     }
 }
 
