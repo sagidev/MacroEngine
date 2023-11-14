@@ -102,10 +102,6 @@
             this.keyBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.keyBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.keyBox.FormattingEnabled = true;
-            this.keyBox.Items.AddRange(new object[] {
-            "Left",
-            "Middle",
-            "Right"});
             this.keyBox.Location = new System.Drawing.Point(131, 260);
             this.keyBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.keyBox.Name = "keyBox";

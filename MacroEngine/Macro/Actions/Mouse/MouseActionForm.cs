@@ -21,6 +21,8 @@ namespace MacroEngine.Macro.Actions.Mouse
         public MouseActionForm()
         {
             InitializeComponent();
+            keyBox.Items.AddRange(Enum.GetNames(typeof(MouseActionKey)));
+            keyBox.SelectedIndex = 0;
         }
 
         private void actionTypeBox_SelectedIndexChanged(object sender, EventArgs e)

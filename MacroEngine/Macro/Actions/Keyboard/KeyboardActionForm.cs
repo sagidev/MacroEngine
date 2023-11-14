@@ -21,6 +21,9 @@ namespace MacroEngine.Macro.Actions.Keyboard
         public KeyboardActionForm()
         {
             InitializeComponent();
+            keyBox.Items.AddRange(Enum.GetNames(typeof(Keys)));
+            keyBox.SelectedIndex = 0;
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
