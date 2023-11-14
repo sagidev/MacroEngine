@@ -18,10 +18,10 @@ namespace MacroEngine.Macro.Actions
             HoldAndRelease
         }
 
-        public KeyboardAction(string value, string description, KeyboardActionType type, string key, int holdTime = 0)
+        public KeyboardAction(Value _value, string description, KeyboardActionType type, string key, int holdTime = 0)
         {
-            ActionType = ActionType.Keyboard;
-            Value = value;
+            actionType = ActionType.Keyboard;
+            value = _value;
             Description = description;
             HoldTime = holdTime;
             keyboardActionType = type;

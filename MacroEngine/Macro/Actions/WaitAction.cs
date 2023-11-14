@@ -10,8 +10,8 @@ namespace MacroEngine.Macro.Actions
     {
         public WaitAction(int milliseconds, string description)
         {
-            ActionType = ActionType.Wait;
-            Value = milliseconds.ToString();
+            actionType = ActionType.Wait;
+            value.delay = milliseconds;
             Description = description;
         }
     }

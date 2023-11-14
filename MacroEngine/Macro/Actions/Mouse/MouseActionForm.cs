@@ -17,6 +17,7 @@ namespace MacroEngine.Macro.Actions.Mouse
 
         private MouseActionKey mouseActionKey = MouseActionKey.None;
         private MouseActionType mouseActionType = MouseActionType.None;
+        private Value value;
 
         public MouseActionForm()
         {
@@ -101,28 +102,31 @@ namespace MacroEngine.Macro.Actions.Mouse
                 MessageBox.Show("Please select a mouse key and action type.", "Invalid parameters");
                 return;
             }
-
+            this.value = new Value();
             string val = keyBox.Text;
             string description = mouseActionType.ToString();
             switch (mouseActionType)
             {
                 case MouseActionType.Move:
-                    val += "[" + xTextbox.Text + "," + yTextbox.Text + "]";
+                    this.value.x = float.Parse(xTextbox.Text);
+                    this.value.y = float.Parse(yTextbox.Text);
                     break;
 
                 case MouseActionType.Drag:
-                    val += "[" + xTextbox.Text + "," + yTextbox.Text + "]";
+                    this.value.x = float.Parse(xTextbox.Text);
+                    this.value.y = float.Parse(yTextbox.Text);
                     break;
 
                 case MouseActionType.Press:
                     break;
 
                 case MouseActionType.Hold:
-                    val += "[" + mouseDelayBar.Value + "ms]";
+                    this.value.delay = mouseDelayBar.Value;
                     break;
             }
+            this.value.key = mouseActionKey.ToString();
 
-            MouseAction action = new MouseAction(val, description, mouseActionType);
+            MouseAction action = new MouseAction(this.value, description, mouseActionType);
             MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
             SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
             this.Close();

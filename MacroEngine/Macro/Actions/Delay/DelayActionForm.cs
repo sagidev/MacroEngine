@@ -22,7 +22,9 @@ namespace MacroEngine.Macro.Actions.Delay
         private void addButton_Click(object sender, EventArgs e)
         {
             int val = delayBar.Value;
-            DelayAction action = new DelayAction(val + "ms", "Delay", val);
+            Value value = new Value();
+            value.delay = val;
+            DelayAction action = new DelayAction(value, "Delay", val);
             MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
             SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
             this.Close();

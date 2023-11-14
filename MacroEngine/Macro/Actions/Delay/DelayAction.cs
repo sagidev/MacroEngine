@@ -8,10 +8,10 @@ namespace MacroEngine.Macro.Actions
 {
     public class DelayAction : Action
     {
-        public DelayAction(string value, string description, int holdTime = 0)
+        public DelayAction(Value _value, string description, int holdTime = 0)
         {
-            ActionType = ActionType.Wait;
-            Value = value;
+            actionType = ActionType.Wait;
+            value = _value;
             Description = description;
             HoldTime = holdTime;
         }

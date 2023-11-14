@@ -36,7 +36,7 @@ namespace MacroEngine
                 return;
             foreach (Action action in MacroManager.macroList[MacroManager.currentMacroIndex].actionList)
             {
-                macroGrid.Rows.Add(action.ActionType, action.Value, action.Description);
+                macroGrid.Rows.Add(action.actionType, action.value, action.Description);
             }
         }
 

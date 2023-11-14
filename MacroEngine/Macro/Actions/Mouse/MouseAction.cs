@@ -25,12 +25,29 @@ namespace MacroEngine.Macro.Actions
             Right
         }
 
-        public MouseAction(string value, string description, MouseActionType type)
+        public MouseAction(Value _value, string description, MouseActionType type)
         {
-            ActionType = ActionType.Mouse;
-            Value = value;
+            actionType = ActionType.Mouse;
+            this.value = _value;
             Description = description;
             mouseActionType = type;
+        }
+
+        public override void Execute()
+        {
+            switch (mouseActionType)
+            {
+                case MouseActionType.Move:
+                    break;
+                case MouseActionType.Press:
+                    break;
+                case MouseActionType.Drag:
+                    break;
+                case MouseActionType.Hold:
+                    break;
+                default:
+                    break;
+            }   
         }
 
         public MouseActionType mouseActionType = MouseActionType.None;

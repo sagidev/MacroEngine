@@ -30,7 +30,7 @@ namespace MacroEngine.Input
             NativeImports.mouse_event(MOUSEEVENTF_MOVE, screenX, screenY, 0, 0);
         }
 
-        public static void PressMouseButton(MouseButton button)
+        public static void PressMouse(MouseButton button)
         {
             uint flagsDown = 0;
             uint flagsUp = 0;

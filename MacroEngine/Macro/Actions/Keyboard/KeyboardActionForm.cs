@@ -14,7 +14,7 @@ namespace MacroEngine.Macro.Actions.Keyboard
     public partial class KeyboardActionForm : Form
     {
         public event EventHandler SubmitButtonClicked;
-
+        private Value value;
         public KeyboardActionType keyboardActionType = KeyboardActionType.None;
         public string keyboardKey = "None";
 
@@ -61,7 +61,7 @@ namespace MacroEngine.Macro.Actions.Keyboard
                 MessageBox.Show("Please select an action type.", "Invalid parameters");
                 return;
             }
-
+            this.value = new Value();
             string val = keyBox.Text;
             string desc = "";
             switch (keyboardActionType)
@@ -70,11 +70,13 @@ namespace MacroEngine.Macro.Actions.Keyboard
                     desc += "Press and Release";
                     break;
                 case KeyboardActionType.HoldAndRelease:
-                    val += " [" + keyboardDelayBar.Value.ToString() + "ms]";
+                    this.value.delay = keyboardDelayBar.Value;
+                   // val += " [" + keyboardDelayBar.Value.ToString() + "ms]";
                     desc += "Hold and Release";
                     break;
             }
-            KeyboardAction action = new KeyboardAction(val, desc, keyboardActionType, keyboardKey);
+            value.key = keyboardKey;
+            KeyboardAction action = new KeyboardAction(this.value, desc, keyboardActionType, keyboardKey);
             MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
             SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
             this.Close();

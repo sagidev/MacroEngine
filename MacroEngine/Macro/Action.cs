@@ -17,9 +17,13 @@ namespace MacroEngine.Macro
     
     public class Action
     {
-        public ActionType ActionType;
-        public string Value;
+        public ActionType actionType;
+        public Value value;
         public string Description;
         public int HoldTime;
+        public virtual void Execute()
+        {
+
+        }
     }
 }
