@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MacroEngine.External
 {
-    internal class NativeInports
+    internal class NativeImports
     {
         //keybd_event
         [System.Runtime.InteropServices.DllImport("user32.dll")]
