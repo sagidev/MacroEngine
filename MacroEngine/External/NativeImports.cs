@@ -8,7 +8,6 @@ namespace MacroEngine.External
 {
     internal class NativeImports
     {
-        //keybd_event
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, uint dwExtraInfo);
     }
