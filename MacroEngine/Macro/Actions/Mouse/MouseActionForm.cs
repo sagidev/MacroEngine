@@ -30,6 +30,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                 case 0:
                     mouseActionType = MouseActionType.Move;
                     mouseDelayBar.Visible = false;
+                    barLabel.Visible = false;
                     xLabel.Visible = true;
                     yLabel.Visible = true;
                     xTextbox.Visible = true;
@@ -39,6 +40,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                 case 1:
                     mouseActionType = MouseActionType.Drag;
                     mouseDelayBar.Visible = false;
+                    barLabel.Visible = false;
                     xLabel.Visible = true;
                     yLabel.Visible = true;
                     xTextbox.Visible = true;
@@ -48,6 +50,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                 case 2:
                     mouseActionType = MouseActionType.Press;
                     mouseDelayBar.Visible = false;
+                    barLabel.Visible = false;
                     xLabel.Visible = false;
                     yLabel.Visible = false;
                     xTextbox.Visible = false;
@@ -57,6 +60,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                 case 3:
                     mouseActionType = MouseActionType.Hold;
                     mouseDelayBar.Visible = true;
+                    barLabel.Visible = true;
                     xLabel.Visible = false;
                     yLabel.Visible = false;
                     xTextbox.Visible = false;

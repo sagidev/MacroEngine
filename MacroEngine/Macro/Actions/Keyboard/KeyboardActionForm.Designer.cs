@@ -44,10 +44,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(108, 25);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(144, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 24);
+            this.label1.Size = new System.Drawing.Size(119, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Insert Key";
             // 
@@ -59,10 +58,10 @@
             this.actionTypeBox.Items.AddRange(new object[] {
             "Press & Instant Release",
             "Press & Hold then Release"});
-            this.actionTypeBox.Location = new System.Drawing.Point(112, 72);
-            this.actionTypeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.actionTypeBox.Location = new System.Drawing.Point(149, 89);
+            this.actionTypeBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.actionTypeBox.Name = "actionTypeBox";
-            this.actionTypeBox.Size = new System.Drawing.Size(116, 21);
+            this.actionTypeBox.Size = new System.Drawing.Size(153, 24);
             this.actionTypeBox.TabIndex = 1;
             this.actionTypeBox.SelectedIndexChanged += new System.EventHandler(this.actionTypeBox_SelectedIndexChanged);
             // 
@@ -82,19 +81,19 @@
             "I",
             "O",
             "P"});
-            this.keyBox.Location = new System.Drawing.Point(136, 146);
-            this.keyBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.keyBox.Location = new System.Drawing.Point(181, 180);
+            this.keyBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.keyBox.Name = "keyBox";
-            this.keyBox.Size = new System.Drawing.Size(92, 21);
+            this.keyBox.Size = new System.Drawing.Size(121, 24);
             this.keyBox.TabIndex = 2;
             this.keyBox.SelectedIndexChanged += new System.EventHandler(this.keyBox_SelectedIndexChanged);
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(68, 181);
-            this.addButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addButton.Location = new System.Drawing.Point(91, 223);
+            this.addButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(77, 30);
+            this.addButton.Size = new System.Drawing.Size(103, 37);
             this.addButton.TabIndex = 3;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
@@ -102,10 +101,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(149, 181);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(199, 223);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(77, 30);
+            this.button2.Size = new System.Drawing.Size(103, 37);
             this.button2.TabIndex = 4;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
@@ -114,11 +113,11 @@
             // keyboardDelayBar
             // 
             this.keyboardDelayBar.LargeChange = 200;
-            this.keyboardDelayBar.Location = new System.Drawing.Point(68, 96);
-            this.keyboardDelayBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.keyboardDelayBar.Location = new System.Drawing.Point(91, 118);
+            this.keyboardDelayBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.keyboardDelayBar.Maximum = 5000;
             this.keyboardDelayBar.Name = "keyboardDelayBar";
-            this.keyboardDelayBar.Size = new System.Drawing.Size(159, 45);
+            this.keyboardDelayBar.Size = new System.Drawing.Size(212, 56);
             this.keyboardDelayBar.SmallChange = 50;
             this.keyboardDelayBar.TabIndex = 5;
             this.keyboardDelayBar.Visible = false;
@@ -127,37 +126,37 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(78, 153);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(104, 188);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.Size = new System.Drawing.Size(71, 16);
             this.label2.TabIndex = 6;
             this.label2.Text = "Select Key";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(78, 74);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(104, 91);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.Size = new System.Drawing.Size(39, 16);
             this.label3.TabIndex = 7;
             this.label3.Text = "Type";
             // 
             // barLabel
             // 
             this.barLabel.AutoSize = true;
-            this.barLabel.Location = new System.Drawing.Point(233, 99);
+            this.barLabel.Location = new System.Drawing.Point(311, 122);
+            this.barLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.barLabel.Name = "barLabel";
-            this.barLabel.Size = new System.Drawing.Size(13, 13);
+            this.barLabel.Size = new System.Drawing.Size(14, 16);
             this.barLabel.TabIndex = 8;
             this.barLabel.Text = "0";
+            this.barLabel.Visible = false;
             // 
             // KeyboardActionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(317, 235);
+            this.ClientSize = new System.Drawing.Size(423, 289);
             this.Controls.Add(this.barLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -167,7 +166,7 @@
             this.Controls.Add(this.keyBox);
             this.Controls.Add(this.actionTypeBox);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "KeyboardActionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "KeyboardActionForm";

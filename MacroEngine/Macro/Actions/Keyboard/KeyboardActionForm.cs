@@ -40,11 +40,13 @@ namespace MacroEngine.Macro.Actions.Keyboard
                 case 0:
                     keyboardActionType = KeyboardActionType.PressAndRelease;
                     keyboardDelayBar.Visible = false;
+                    barLabel.Visible = false;
                     break;
 
                 case 1:
                     keyboardActionType = KeyboardActionType.HoldAndRelease;
                     keyboardDelayBar.Visible = true;
+                    barLabel.Visible = true;
                     break;
             }
         }
