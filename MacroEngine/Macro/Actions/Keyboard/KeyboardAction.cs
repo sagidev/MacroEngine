@@ -27,5 +27,36 @@ namespace MacroEngine.Macro.Actions
             keyboardActionType = type;
             keyboardKey = key;
         }
+
+        private void ExecuteKeyPress()
+        {
+            if (value.key == "None")
+                return;
+
+            Input.Keyboard.PressKey(value.key);
+        }
+
+        private void ExecuteKeyHold()
+        {
+            if (value.key == "None" || value.delay == 0)
+                return;
+
+            Input.Keyboard.HoldKey(value.key, value.delay);
+        }
+
+        public override void Execute()
+        {
+            switch (keyboardActionType)
+            {
+                case KeyboardActionType.PressAndRelease:
+                    ExecuteKeyPress();
+                    break;
+                case KeyboardActionType.HoldAndRelease:
+                    ExecuteKeyHold();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

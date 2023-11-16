@@ -15,5 +15,9 @@ namespace MacroEngine.Macro.Actions
             Description = description;
             HoldTime = holdTime;
         }
+        public override void Execute()
+        {
+            System.Threading.Thread.Sleep(value.delay);
+        }
     }
 }

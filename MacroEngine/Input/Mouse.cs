@@ -9,6 +9,7 @@ namespace MacroEngine.Input
 {
     public enum MouseButton
     {
+        None,
         Left,
         Middle,
         Right

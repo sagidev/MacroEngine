@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MacroEngine.Input;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,14 +16,14 @@ namespace MacroEngine.Macro.Actions.Mouse
     {
         public event EventHandler SubmitButtonClicked;
 
-        private MouseActionKey mouseActionKey = MouseActionKey.None;
+        private MouseButton mouseActionKey = MouseButton.None;
         private MouseActionType mouseActionType = MouseActionType.None;
         private Value value;
 
         public MouseActionForm()
         {
             InitializeComponent();
-            keyBox.Items.AddRange(Enum.GetNames(typeof(MouseActionKey)));
+            keyBox.Items.AddRange(Enum.GetNames(typeof(MouseButton)));
             keyBox.SelectedIndex = 0;
         }
 
@@ -82,22 +83,22 @@ namespace MacroEngine.Macro.Actions.Mouse
             switch (keyBox.SelectedIndex)
             {
                 case 0:
-                    mouseActionKey = MouseActionKey.Left;
+                    mouseActionKey = MouseButton.Left;
                     break;
 
                 case 1:
-                    mouseActionKey = MouseActionKey.Middle;
+                    mouseActionKey = MouseButton.Middle;
                     break;
 
                 case 2:
-                    mouseActionKey = MouseActionKey.Right;
+                    mouseActionKey = MouseButton.Right;
                     break;
             }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            if (mouseActionKey == MouseActionKey.None || mouseActionType == MouseActionType.None)
+            if (mouseActionKey == MouseButton.None || mouseActionType == MouseActionType.None)
             {
                 MessageBox.Show("Please select a mouse key and action type.", "Invalid parameters");
                 return;
