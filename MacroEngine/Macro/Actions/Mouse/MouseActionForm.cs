@@ -39,6 +39,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                     yLabel.Visible = true;
                     xTextbox.Visible = true;
                     yTextbox.Visible = true;
+                    keyBox.Visible = false;
                     break;
 
                 case 1:
@@ -49,6 +50,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                     yLabel.Visible = true;
                     xTextbox.Visible = true;
                     yTextbox.Visible = true;
+                    keyBox.Visible = true;
                     break;
 
                 case 2:
@@ -59,6 +61,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                     yLabel.Visible = false;
                     xTextbox.Visible = false;
                     yTextbox.Visible = false;
+                    keyBox.Visible = true;
                     break;
 
                 case 3:
@@ -69,6 +72,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                     yLabel.Visible = false;
                     xTextbox.Visible = false;
                     yTextbox.Visible = false;
+                    keyBox.Visible = true;
                     break;
             }
         }
@@ -98,34 +102,60 @@ namespace MacroEngine.Macro.Actions.Mouse
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            if (mouseActionKey == MouseButton.None || mouseActionType == MouseActionType.None)
+            if (mouseActionType == MouseActionType.None)
             {
                 MessageBox.Show("Please select a mouse key and action type.", "Invalid parameters");
                 return;
             }
             this.value = new Value();
-            string val = keyBox.Text;
             string description = mouseActionType.ToString();
             switch (mouseActionType)
             {
                 case MouseActionType.Move:
+                    if (xTextbox.Text == "" || yTextbox.Text == "")
+                    {
+                        MessageBox.Show("Please enter a valid x and y value.", "Invalid parameters");
+                        return;
+                    }
                     this.value.x = float.Parse(xTextbox.Text);
                     this.value.y = float.Parse(yTextbox.Text);
                     break;
 
                 case MouseActionType.Drag:
+                    if (xTextbox.Text == "" || yTextbox.Text == "")
+                    {
+                        MessageBox.Show("Please enter a valid x and y value.", "Invalid parameters");
+                        return;
+                    }
                     this.value.x = float.Parse(xTextbox.Text);
                     this.value.y = float.Parse(yTextbox.Text);
+                    if(mouseActionKey == MouseButton.None)
+                    {
+                        MessageBox.Show("Please select a mouse key.", "Invalid parameters");
+                        return;
+                    }
+                    this.value.key = mouseActionKey.ToString();
                     break;
 
                 case MouseActionType.Press:
+                    if (mouseActionKey == MouseButton.None)
+                    {
+                        MessageBox.Show("Please select a mouse key.", "Invalid parameters");
+                        return;
+                    }
+                    this.value.key = mouseActionKey.ToString();
                     break;
 
                 case MouseActionType.Hold:
                     this.value.delay = mouseDelayBar.Value;
+                    if (mouseActionKey == MouseButton.None)
+                    {
+                        MessageBox.Show("Please select a mouse key.", "Invalid parameters");
+                        return;
+                    }
+                    this.value.key = mouseActionKey.ToString();
                     break;
             }
-            this.value.key = mouseActionKey.ToString();
 
             MouseAction action = new MouseAction(this.value, description, mouseActionType);
             MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);

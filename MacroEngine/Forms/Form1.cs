@@ -1,4 +1,5 @@
-﻿using MacroEngine.Macro;
+﻿using MacroEngine.External;
+using MacroEngine.Macro;
 using MacroEngine.Macro.Actions;
 using MacroEngine.Macro.Actions.Delay;
 using MacroEngine.Macro.Actions.Keyboard;
@@ -19,6 +20,9 @@ namespace MacroEngine
 {
     public partial class Form1 : Form
     {
+        private readonly DelayedAction delay = new DelayedAction();
+        private Timer updateTimer;
+
         public Form1()
         {
             InitializeComponent();
@@ -108,10 +112,21 @@ namespace MacroEngine
             macroListBox.SelectedIndex = MacroManager.currentMacroIndex;
             FillMacroGrid();
         }
-
+        public void Printxd()
+        {
+            MessageBox.Show("xd");
+        }
         private void playButton_Click(object sender, EventArgs e)
         {
+            updateTimer = new Timer();
+            updateTimer.Interval = 100;
+            updateTimer.Tick += UpdateTimer_Tick;
+            updateTimer.Start();
             MacroManager.macroList[MacroManager.currentMacroIndex].Play();
+        }
+        private void UpdateTimer_Tick(object sender, EventArgs e)
+        {
+            delay.Update();
         }
     }
 }
