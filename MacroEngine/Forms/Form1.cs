@@ -108,8 +108,11 @@ namespace MacroEngine
         {
             MacroManager.macroList.RemoveAt(MacroManager.currentMacroIndex);
             macroListBox.Items.RemoveAt(MacroManager.currentMacroIndex);
-            MacroManager.currentMacroIndex = MacroManager.macroList.Count - 1;
-            macroListBox.SelectedIndex = MacroManager.currentMacroIndex;
+            if(MacroManager.macroList.Count > 0)
+            {
+                MacroManager.currentMacroIndex = MacroManager.macroList.Count - 1;
+                macroListBox.SelectedIndex = MacroManager.currentMacroIndex;
+            }
             FillMacroGrid();
         }
         public void Printxd()

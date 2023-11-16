@@ -26,9 +26,7 @@ namespace MacroEngine.Input
 
         public static void MoveMouse(float x, float y)
         {
-            int screenX = (int)(x * 65535 / System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width);
-            int screenY = (int)(y * 65535 / System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
-            NativeImports.mouse_event(MOUSEEVENTF_MOVE, screenX, screenY, 0, 0);
+            NativeImports.SetCursorPos((int)x, (int)y);
         }
 
         public static void PressMouse(MouseButton button)

@@ -14,13 +14,16 @@ namespace MacroEngine.Macro
 
         public static void Initialize()
         {
-            macroList = new List<Macro>();
-            macroList.Add(GenerateTemplateMacro());
+            macroList = new List<Macro>
+            {
+               // GenerateTemplateMacro(),
+                GenerateTemplateMacro2()
+            };
         }
 
         public static Macro GenerateTemplateMacro()
         {
-            Macro macro = new Macro("Template");
+            Macro macro = new Macro("KeyboardTemplate");
             Value value1 = new Value();
             value1.key = "K";
             Value value2 = new Value();
@@ -29,6 +32,27 @@ namespace MacroEngine.Macro
             KeyboardAction k2 = new KeyboardAction(value2, "Hold", KeyboardAction.KeyboardActionType.HoldAndRelease, "D", 1000);
             macro.AddAction(k1);
             macro.AddAction(k2);
+
+            return macro;
+        }
+
+        public static Macro GenerateTemplateMacro2()
+        {
+            Macro macro = new Macro("MouseTemplate");
+            Value value1 = new Value();
+            value1.x = 50;
+            value1.y = 50;
+            Value value2 = new Value();
+            value2.x = 250;
+            value2.y = 250;
+            Value value3 = new Value();
+            value3.delay = 2000;
+            MouseAction m1 = new MouseAction(value1, "Move", MouseAction.MouseActionType.Move);
+            MouseAction m2 = new MouseAction(value2, "Move", MouseAction.MouseActionType.Move);
+            DelayAction d1 = new DelayAction(value3, "Delay");
+            macro.AddAction(m1);
+            macro.AddAction(d1);
+            macro.AddAction(m2);
 
             return macro;
         }

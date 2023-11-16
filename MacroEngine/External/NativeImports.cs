@@ -15,5 +15,8 @@ namespace MacroEngine.External
         [DllImport("user32.dll")]
         public static extern void mouse_event(uint dwFlags, int dx, int dy, uint dwData, int dwExtraInfo);
 
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetCursorPos(int x, int y);
     }
 }
