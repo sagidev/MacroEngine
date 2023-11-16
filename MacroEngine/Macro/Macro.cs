@@ -54,6 +54,7 @@ namespace MacroEngine.Macro
             {
                 action.Execute();
             }
+            Form1.updateTimer.Stop();
             MessageBox.Show("Finished!");
         }
     }

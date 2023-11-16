@@ -78,7 +78,6 @@
     <Compile Include="Macro\Actions\Mouse\MouseActionForm.Designer.cs">
       <DependentUpon>MouseActionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Macro\Actions\WaitAction.cs" />
     <Compile Include="Macro\Macro.cs" />
     <Compile Include="Macro\MacroManager.cs" />
     <Compile Include="Program.cs" />

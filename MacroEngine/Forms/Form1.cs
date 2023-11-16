@@ -21,7 +21,7 @@ namespace MacroEngine
     public partial class Form1 : Form
     {
         private readonly DelayedAction delay = new DelayedAction();
-        private Timer updateTimer;
+        public static Timer updateTimer;
 
         public Form1()
         {
@@ -30,6 +30,11 @@ namespace MacroEngine
             macroBox.Text = MacroManager.macroList[MacroManager.currentMacroIndex].Name;
             macroListBox.Items.Add(MacroManager.macroList[MacroManager.macroList.Count - 1].Name);
             macroListBox.SelectedIndex = MacroManager.currentMacroIndex;
+
+            updateTimer = new Timer();
+            updateTimer.Interval = 100;
+            updateTimer.Tick += UpdateTimer_Tick;
+
             FillMacroGrid();
         }
 
@@ -115,15 +120,8 @@ namespace MacroEngine
             }
             FillMacroGrid();
         }
-        public void Printxd()
-        {
-            MessageBox.Show("xd");
-        }
         private void playButton_Click(object sender, EventArgs e)
         {
-            updateTimer = new Timer();
-            updateTimer.Interval = 100;
-            updateTimer.Tick += UpdateTimer_Tick;
             updateTimer.Start();
             MacroManager.macroList[MacroManager.currentMacroIndex].Play();
         }
