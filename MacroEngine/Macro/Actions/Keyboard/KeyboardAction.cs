@@ -15,7 +15,8 @@ namespace MacroEngine.Macro.Actions
         {
             None,
             PressAndRelease,
-            HoldAndRelease
+            HoldAndRelease,
+            Combo
         }
 
         public KeyboardAction(Value _value, string description, KeyboardActionType type, string key, int holdTime = 0)

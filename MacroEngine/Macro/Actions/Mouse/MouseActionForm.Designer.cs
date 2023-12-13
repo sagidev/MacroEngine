@@ -41,6 +41,7 @@
             this.yLabel = new System.Windows.Forms.Label();
             this.yTextbox = new System.Windows.Forms.TextBox();
             this.barLabel = new System.Windows.Forms.Label();
+            this.setPositionBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mouseDelayBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,7 +139,7 @@
             // 
             // xTextbox
             // 
-            this.xTextbox.Location = new System.Drawing.Point(131, 187);
+            this.xTextbox.Location = new System.Drawing.Point(87, 188);
             this.xTextbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.xTextbox.Name = "xTextbox";
             this.xTextbox.Size = new System.Drawing.Size(88, 22);
@@ -148,7 +149,7 @@
             // xLabel
             // 
             this.xLabel.AutoSize = true;
-            this.xLabel.Location = new System.Drawing.Point(96, 190);
+            this.xLabel.Location = new System.Drawing.Point(52, 191);
             this.xLabel.Name = "xLabel";
             this.xLabel.Size = new System.Drawing.Size(15, 16);
             this.xLabel.TabIndex = 17;
@@ -158,7 +159,7 @@
             // yLabel
             // 
             this.yLabel.AutoSize = true;
-            this.yLabel.Location = new System.Drawing.Point(96, 218);
+            this.yLabel.Location = new System.Drawing.Point(52, 219);
             this.yLabel.Name = "yLabel";
             this.yLabel.Size = new System.Drawing.Size(16, 16);
             this.yLabel.TabIndex = 19;
@@ -167,7 +168,7 @@
             // 
             // yTextbox
             // 
-            this.yTextbox.Location = new System.Drawing.Point(131, 215);
+            this.yTextbox.Location = new System.Drawing.Point(87, 216);
             this.yTextbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.yTextbox.Name = "yTextbox";
             this.yTextbox.Size = new System.Drawing.Size(88, 22);
@@ -185,11 +186,22 @@
             this.barLabel.Text = "0";
             this.barLabel.Visible = false;
             // 
+            // setPositionBtn
+            // 
+            this.setPositionBtn.Location = new System.Drawing.Point(182, 188);
+            this.setPositionBtn.Name = "setPositionBtn";
+            this.setPositionBtn.Size = new System.Drawing.Size(67, 50);
+            this.setPositionBtn.TabIndex = 21;
+            this.setPositionBtn.Text = "set position";
+            this.setPositionBtn.UseVisualStyleBackColor = true;
+            this.setPositionBtn.Click += new System.EventHandler(this.setPositionBtn_Click);
+            // 
             // MouseActionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(328, 395);
+            this.Controls.Add(this.setPositionBtn);
             this.Controls.Add(this.barLabel);
             this.Controls.Add(this.yLabel);
             this.Controls.Add(this.yTextbox);
@@ -230,5 +242,6 @@
         private System.Windows.Forms.Label yLabel;
         private System.Windows.Forms.TextBox yTextbox;
         private System.Windows.Forms.Label barLabel;
+        private System.Windows.Forms.Button setPositionBtn;
     }
 }

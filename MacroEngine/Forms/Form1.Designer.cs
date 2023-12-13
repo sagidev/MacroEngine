@@ -38,6 +38,7 @@
             this.keyboardActionButton = new System.Windows.Forms.Button();
             this.mouseActionButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.saveMacroBtn = new System.Windows.Forms.Button();
             this.deleteMacroBtn = new System.Windows.Forms.Button();
             this.createNewMacroBtn = new System.Windows.Forms.Button();
             this.macroListBox = new System.Windows.Forms.ComboBox();
@@ -50,7 +51,6 @@
             this.Action = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saveMacroBtn = new System.Windows.Forms.Button();
             this.macroBox.SuspendLayout();
             this.InputBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -103,6 +103,7 @@
             this.recordButton.TabIndex = 1;
             this.recordButton.Text = "Record";
             this.recordButton.UseVisualStyleBackColor = true;
+            this.recordButton.Click += new System.EventHandler(this.recordButton_Click);
             // 
             // InputBox
             // 
@@ -176,6 +177,16 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Manager";
+            // 
+            // saveMacroBtn
+            // 
+            this.saveMacroBtn.Location = new System.Drawing.Point(6, 79);
+            this.saveMacroBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.saveMacroBtn.Name = "saveMacroBtn";
+            this.saveMacroBtn.Size = new System.Drawing.Size(119, 25);
+            this.saveMacroBtn.TabIndex = 3;
+            this.saveMacroBtn.Text = "Save";
+            this.saveMacroBtn.UseVisualStyleBackColor = true;
             // 
             // deleteMacroBtn
             // 
@@ -318,16 +329,6 @@
             this.Label.Name = "Label";
             this.Label.ReadOnly = true;
             this.Label.Width = 300;
-            // 
-            // saveMacroBtn
-            // 
-            this.saveMacroBtn.Location = new System.Drawing.Point(6, 79);
-            this.saveMacroBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.saveMacroBtn.Name = "saveMacroBtn";
-            this.saveMacroBtn.Size = new System.Drawing.Size(119, 25);
-            this.saveMacroBtn.TabIndex = 3;
-            this.saveMacroBtn.Text = "Save";
-            this.saveMacroBtn.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

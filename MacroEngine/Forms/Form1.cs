@@ -5,6 +5,7 @@ using MacroEngine.Macro.Actions.Delay;
 using MacroEngine.Macro.Actions.Keyboard;
 using MacroEngine.Macro.Actions.Mouse;
 using System;
+using Loamen.KeyMouseHook;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,13 +16,34 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Action = MacroEngine.Macro.Action;
+using Gma.System.MouseKeyHook;
 
 namespace MacroEngine
 {
+    /* TODO
+     * - Load/Save macros from PC
+     * - Handle Mouse/Keyboard Press&Move at once
+     * - Make Delay class working (inside updateTimer)
+     * - Add PixelSearch function to Form1 menu
+     * - Add macro editing in GUI
+     * - Add Action moving in GUI
+     * - Add macro recording
+     * - Add macro start on hotkey
+     * - Add global settings in droptown top menu in application
+     * 
+     * wzorzec command - https://www.codeproject.com/Articles/15207/Design-Patterns-Command-Pattern
+    */
     public partial class Form1 : Form
     {
         private readonly DelayedAction delay = new DelayedAction();
         public static Timer updateTimer;
+
+        bool IsRecording = false;
+
+        private readonly KeyMouseFactory _eventHookFactory = new KeyMouseFactory(Hook.GlobalEvents());
+        private readonly KeyboardWatcher _keyboardWatcher;
+        private readonly KeyboardWatcher _shortcutWatcher;
+        private readonly MouseWatcher _mouseWatcher;
 
         public Form1()
         {
@@ -35,7 +57,35 @@ namespace MacroEngine
             updateTimer.Interval = 100;
             updateTimer.Tick += UpdateTimer_Tick;
 
+            _keyboardWatcher = _eventHookFactory.GetKeyboardWatcher();
+            _keyboardWatcher.OnKeyboardInput += GlobalHookHandler;
+            _shortcutWatcher = new KeyMouseFactory(Hook.GlobalEvents()).GetKeyboardWatcher();
+            //_shortcutWatcher.OnKeyboardInput += ShortcutHandler;
+            _shortcutWatcher.Start(Hook.GlobalEvents());
+            _mouseWatcher = _eventHookFactory.GetMouseWatcher();
+            //_mouseWatcher.OnMouseInput += GlobalHookHandler;
+
             FillMacroGrid();
+        }
+
+        private void GlobalHookHandler(object sender, MacroEvent e)
+        {
+            if (!IsRecording)
+                return;
+
+            switch (e.EventArgs)
+            {
+                //case MouseEventExtArgs mouseEvent:
+                //    e.EventArgs = new MouseEventArgs(mouseEvent.Button, mouseEvent.Clicks, mouseEvent.X, mouseEvent.Y, mouseEvent.Delta);
+                //    break;
+                case KeyEventArgsExt keyEvent:
+                    e.EventArgs = new KeyEventArgs(keyEvent.KeyData);
+                    break;
+                case KeyPressEventArgsExt keyPressEvent:
+                    e.EventArgs = new KeyPressEventArgs(keyPressEvent.KeyChar);
+                    break;
+            }
+            MessageBox.Show(e.EventArgs.ToString());
         }
 
         public void FillMacroGrid()
@@ -128,6 +178,18 @@ namespace MacroEngine
         private void UpdateTimer_Tick(object sender, EventArgs e)
         {
             delay.Update();
+        }
+
+        private void recordButton_Click(object sender, EventArgs e)
+        {
+            IsRecording = true;
+            StartWatch(Hook.GlobalEvents());
+        }
+
+        private void StartWatch(IKeyboardMouseEvents events = null)
+        {
+            _keyboardWatcher.Start(events);
+            _mouseWatcher.Start(events);
         }
     }
 }

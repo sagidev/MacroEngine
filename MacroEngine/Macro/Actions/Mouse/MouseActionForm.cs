@@ -1,10 +1,12 @@
-﻿using MacroEngine.Input;
+﻿using MacroEngine.External;
+using MacroEngine.Input;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +14,8 @@ using static MacroEngine.Macro.Actions.MouseAction;
 
 namespace MacroEngine.Macro.Actions.Mouse
 {
+
+
     public partial class MouseActionForm : Form
     {
         public event EventHandler SubmitButtonClicked;
@@ -20,11 +24,16 @@ namespace MacroEngine.Macro.Actions.Mouse
         private MouseActionType mouseActionType = MouseActionType.None;
         private Value value;
 
+        private bool isMinimized = false;
+        private Point clickedPoint;
+        private OverlayForm overlayForm;
+
         public MouseActionForm()
         {
             InitializeComponent();
             keyBox.Items.AddRange(Enum.GetNames(typeof(MouseButton)));
             keyBox.SelectedIndex = 0;
+            MouseClick += MainForm_MouseClick;
         }
 
         private void actionTypeBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -167,5 +176,57 @@ namespace MacroEngine.Macro.Actions.Mouse
         {
             barLabel.Text = mouseDelayBar.Value + "ms";
         }
+
+        private void setPositionBtn_Click(object sender, EventArgs e)
+        {
+            if (!Hooks.IsHooked)
+            {
+                Hooks.SetHook();
+            }
+        }
+
+        private void MainForm_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (isMinimized && e.Button == MouseButtons.Left)
+            {
+                clickedPoint = Cursor.Position;
+                Point cursorPosition = new Point(clickedPoint.X, clickedPoint.Y);
+                MessageBox.Show($"Cursor Position: X={cursorPosition.X}, Y={cursorPosition.Y}");
+                WindowState = FormWindowState.Normal;
+                isMinimized = false;
+            }
+        }
+    }
+
+
+    public class OverlayForm : Form
+    {
+        private const int WS_EX_LAYERED = 0x80000;
+        private const int WS_EX_TRANSPARENT = 0x20;
+        private const int GWL_EXSTYLE = -20;
+
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern IntPtr GetWindowLongPtr(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr SetWindowLongPtr(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
+
+        public OverlayForm()
+        {
+            FormBorderStyle = FormBorderStyle.None;
+            WindowState = FormWindowState.Maximized;
+            TopMost = true;
+            IntPtr extendedStyle = GetWindowLongPtr(Handle, GWL_EXSTYLE);
+            SetWindowLongPtr(Handle, GWL_EXSTYLE, new IntPtr(extendedStyle.ToInt64() | WS_EX_LAYERED | WS_EX_TRANSPARENT));
+            TransparencyKey = Color.Magenta;
+            SetLayeredWindowAttributes(Handle, 0, 5, LWA_ALPHA);
+        }
+
+        private const int LWA_ALPHA = 0x2;
+
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool SetLayeredWindowAttributes(IntPtr hwnd, uint crKey, byte bAlpha, uint dwFlags);
     }
 }
