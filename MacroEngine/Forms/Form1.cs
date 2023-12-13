@@ -27,7 +27,7 @@ namespace MacroEngine
      * - Add PixelSearch function to Form1 menu
      * - Add macro editing in GUI
      * - Add Action moving in GUI
-     * - Add macro recording
+     * - Add macro recording [done]
      * - Add macro start on hotkey
      * - Add global settings in droptown top menu in application
      *
@@ -55,7 +55,6 @@ namespace MacroEngine
         {
             InitializeComponent();
             MacroManager.Initialize();
-            macroBox.Text = MacroManager.macroList[MacroManager.currentMacroIndex].Name;
             macroListBox.Items.Add(MacroManager.macroList[MacroManager.macroList.Count - 1].Name);
             macroListBox.SelectedIndex = MacroManager.currentMacroIndex;
 
@@ -106,6 +105,17 @@ namespace MacroEngine
             if (!IsRecording)
                 return;
 
+            if (e.KeyMouseEventType == MacroEventType.KeyUp || e.KeyMouseEventType == MacroEventType.KeyDown)
+            {
+                var keyEvent = (KeyEventArgs)e.EventArgs;
+                switch (keyEvent.KeyCode)
+                {
+                    case Key_Play:
+                    case Key_Record:
+                        return;
+                }
+            }
+
             var currentMacro = MacroManager.macroList[MacroManager.currentMacroIndex];
             Value value;
             switch (e.EventArgs)
@@ -131,6 +141,7 @@ namespace MacroEngine
                     value.x = mouseEvent.X;
                     value.y = mouseEvent.Y;
                     value.key = mouseEvent.Button.ToString();
+                    value.delay = e.TimeSinceLastEvent;
                     MouseAction mouse_action = new MouseAction(value, e.KeyMouseEventType.ToString() + "[" + e.TimeSinceLastEvent + "ms]", MouseAction.MouseActionType.Press);
                     currentMacro.actionList.Add(mouse_action);
 
@@ -148,6 +159,7 @@ namespace MacroEngine
                     Console.WriteLine(keyEvent.KeyData);
                     value = new Value();
                     value.key = keyEvent.KeyData.ToString();
+                    value.delay = e.TimeSinceLastEvent;
                     KeyboardAction action = new KeyboardAction(value, e.KeyMouseEventType.ToString() + "[" + e.TimeSinceLastEvent + "ms]", KeyboardAction.KeyboardActionType.PressAndRelease, keyEvent.KeyData.ToString());
                     currentMacro.actionList.Add(action);
                     FillMacroGrid();
@@ -257,6 +269,11 @@ namespace MacroEngine
         {
             keyboardSub.Start(events);
             mouseSub.Start(events);
+        }
+
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            RecordHook();
         }
     }
 }
