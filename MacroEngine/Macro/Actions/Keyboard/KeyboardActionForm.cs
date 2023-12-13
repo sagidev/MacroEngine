@@ -14,6 +14,7 @@ namespace MacroEngine.Macro.Actions.Keyboard
     public partial class KeyboardActionForm : Form
     {
         public event EventHandler SubmitButtonClicked;
+
         private Value value;
         public KeyboardActionType keyboardActionType = KeyboardActionType.None;
         public string keyboardKey = "None";
@@ -23,7 +24,6 @@ namespace MacroEngine.Macro.Actions.Keyboard
             InitializeComponent();
             keyBox.Items.AddRange(Enum.GetNames(typeof(Keys)));
             keyBox.SelectedIndex = 0;
-            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -69,9 +69,10 @@ namespace MacroEngine.Macro.Actions.Keyboard
                 case KeyboardActionType.PressAndRelease:
                     desc += "Press and Release";
                     break;
+
                 case KeyboardActionType.HoldAndRelease:
                     this.value.delay = keyboardDelayBar.Value;
-                   // val += " [" + keyboardDelayBar.Value.ToString() + "ms]";
+                    // val += " [" + keyboardDelayBar.Value.ToString() + "ms]";
                     desc += "Hold and Release";
                     break;
             }
