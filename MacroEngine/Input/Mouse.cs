@@ -16,50 +16,66 @@ namespace MacroEngine.Input
         Middle,
         Right
     }
-    
+
     internal class Mouse
-    {   
-        const uint MOUSEEVENTF_MOVE = 0x0001;
-        const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
-        const uint MOUSEEVENTF_LEFTUP = 0x0004;
-        const uint MOUSEEVENTF_RIGHTDOWN = 0x0008;
-        const uint MOUSEEVENTF_RIGHTUP = 0x0010;
-        const uint MOUSEEVENTF_MIDDLEDOWN = 0x0020;
-        const uint MOUSEEVENTF_MIDDLEUP = 0x0040;
+    {
+        private const uint MOUSEEVENTF_MOVE = 0x0001;
+        private const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
+        private const uint MOUSEEVENTF_LEFTUP = 0x0004;
+        private const uint MOUSEEVENTF_RIGHTDOWN = 0x0008;
+        private const uint MOUSEEVENTF_RIGHTUP = 0x0010;
+        private const uint MOUSEEVENTF_MIDDLEDOWN = 0x0020;
+        private const uint MOUSEEVENTF_MIDDLEUP = 0x0040;
 
         private static bool hasClicked = false;
-
-        public static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
-        {
-            if (!Hooks.IsHooked)
-            {
-                Hooks.Unhook();
-                return IntPtr.Zero;
-            }
-            if (Hooks.IsHooked && nCode >= 0 && wParam == (IntPtr)NativeImports.WM_LBUTTONDOWN)
-            {
-                // Extract mouse position
-                NativeImports.MSLLHOOKSTRUCT hookStruct =
-                    (NativeImports.MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(NativeImports.MSLLHOOKSTRUCT));
-                int x = hookStruct.pt.x;
-                int y = hookStruct.pt.y;
-
-                // Do something with the mouse position
-                MessageBox.Show($"Mouse clicked outside the application at X: {x}, Y: {y}, : {hasClicked}");
-
-                hasClicked = true;
-                
-                // Unhook the mouse event
-                Hooks.Unhook();
-            }
-
-            return IntPtr.Zero;
-            //return NativeImports.CallNextHookEx(NativeImports.WH_MOUSE_LL, nCode, wParam, lParam);
-        }
 
         public static void MoveMouse(float x, float y)
         {
             NativeImports.SetCursorPos((int)x, (int)y);
+        }
+
+        public static void MouseDown(MouseButton button)
+        {
+            uint flags = 0;
+
+            switch (button)
+            {
+                case MouseButton.Left:
+                    flags = MOUSEEVENTF_LEFTDOWN;
+                    break;
+
+                case MouseButton.Middle:
+                    flags = MOUSEEVENTF_MIDDLEDOWN;
+                    break;
+
+                case MouseButton.Right:
+                    flags = MOUSEEVENTF_RIGHTDOWN;
+                    break;
+            }
+
+            NativeImports.mouse_event(flags, 0, 0, 0, 0);
+        }
+
+        public static void MouseUp(MouseButton button)
+        {
+            uint flags = 0;
+
+            switch (button)
+            {
+                case MouseButton.Left:
+                    flags = MOUSEEVENTF_LEFTUP;
+                    break;
+
+                case MouseButton.Middle:
+                    flags = MOUSEEVENTF_MIDDLEUP;
+                    break;
+
+                case MouseButton.Right:
+                    flags = MOUSEEVENTF_RIGHTUP;
+                    break;
+            }
+
+            NativeImports.mouse_event(flags, 0, 0, 0, 0);
         }
 
         public static void PressMouse(MouseButton button)
@@ -73,10 +89,12 @@ namespace MacroEngine.Input
                     flagsDown = MOUSEEVENTF_LEFTDOWN;
                     flagsUp = MOUSEEVENTF_LEFTUP;
                     break;
+
                 case MouseButton.Middle:
                     flagsDown = MOUSEEVENTF_MIDDLEDOWN;
                     flagsUp = MOUSEEVENTF_MIDDLEUP;
                     break;
+
                 case MouseButton.Right:
                     flagsDown = MOUSEEVENTF_RIGHTDOWN;
                     flagsUp = MOUSEEVENTF_RIGHTUP;

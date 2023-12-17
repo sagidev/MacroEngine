@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace MacroEngine.Macro
         public float x, y;
         public int delay;
         public string key;
+        public Keys _key;
 
         public override string ToString()
         {
@@ -24,7 +26,7 @@ namespace MacroEngine.Macro
             {
                 output += $"[delay: {delay}ms]";
             }
-            if(!string.IsNullOrEmpty(key))
+            if (!string.IsNullOrEmpty(key))
             {
                 output += $"[key: {key}]";
             }
@@ -32,7 +34,7 @@ namespace MacroEngine.Macro
             return output;
         }
     }
-    
+
     public class Macro
     {
         public Macro(string name)
@@ -40,6 +42,7 @@ namespace MacroEngine.Macro
             actionList = new List<Action>();
             Name = name;
         }
+
         public List<Action> actionList;
         public string Name;
 
@@ -50,11 +53,11 @@ namespace MacroEngine.Macro
 
         public void Play()
         {
-            foreach(Action action in actionList)
+            foreach (Action action in actionList)
             {
                 action.Execute();
+                Thread.Sleep(action.value.delay);
             }
-            Form1.updateTimer.Stop();
             MessageBox.Show("Finished!");
         }
     }

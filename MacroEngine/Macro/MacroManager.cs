@@ -28,8 +28,8 @@ namespace MacroEngine.Macro
             value1.key = "K";
             Value value2 = new Value();
             value2.key = "D";
-            KeyboardAction k1 = new KeyboardAction(value1, "Press", KeyboardAction.KeyboardActionType.PressAndRelease, "K", 0);
-            KeyboardAction k2 = new KeyboardAction(value2, "Hold", KeyboardAction.KeyboardActionType.HoldAndRelease, "D", 1000);
+            KeyboardAction k1 = new KeyboardAction(value1, "Press", KeyboardAction.KeyboardActionType.PressAndRelease, 0);
+            KeyboardAction k2 = new KeyboardAction(value2, "Hold", KeyboardAction.KeyboardActionType.HoldAndRelease, 1000);
             macro.AddAction(k1);
             macro.AddAction(k2);
 

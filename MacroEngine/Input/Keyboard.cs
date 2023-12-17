@@ -13,7 +13,7 @@ namespace MacroEngine.Input
     {
         private const int KEYEVENTF_EXTENDEDKEY = 0x0001;
         private const int KEYEVENTF_KEYUP = 0x0002;
-        
+
         public static void PressKey(string keyName)
         {
             try
@@ -25,6 +25,58 @@ namespace MacroEngine.Input
             catch (Exception ex)
             {
                 Console.WriteLine($"Error simulating key press: {ex.Message}");
+            }
+        }
+
+        public static void KeyDown(Keys key)
+        {
+            try
+            {
+                byte keyCode = (byte)key;
+                NativeImports.keybd_event(keyCode, 0, KEYEVENTF_EXTENDEDKEY, 0);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error simulating key down: {ex.Message}");
+            }
+        }
+
+        public static void KeyDown(string keyName)
+        {
+            try
+            {
+                byte keyCode = (byte)Enum.Parse(typeof(Keys), keyName);
+                NativeImports.keybd_event(keyCode, 0, KEYEVENTF_EXTENDEDKEY, 0);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error simulating key down: {ex.Message}");
+            }
+        }
+
+        public static void KeyUp(Keys key)
+        {
+            try
+            {
+                byte keyCode = (byte)key;
+                NativeImports.keybd_event(keyCode, 0, KEYEVENTF_KEYUP, 0);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error simulating key up: {ex.Message}");
+            }
+        }
+
+        public static void KeyUp(string keyName)
+        {
+            try
+            {
+                byte keyCode = (byte)Enum.Parse(typeof(Keys), keyName);
+                NativeImports.keybd_event(keyCode, 0, KEYEVENTF_KEYUP, 0);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error simulating key up: {ex.Message}");
             }
         }
 

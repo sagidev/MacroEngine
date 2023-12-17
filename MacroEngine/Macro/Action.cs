@@ -15,13 +15,14 @@ namespace MacroEngine.Macro
         Repeat,
         Search
     }
-    
+
     public class Action
     {
         public ActionType actionType;
         public Value value;
         public string Description;
         public int HoldTime;
+
         public virtual void Execute()
         {
             MessageBox.Show("Action is missing a definition!");

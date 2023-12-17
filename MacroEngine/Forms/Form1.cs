@@ -5,7 +5,6 @@ using MacroEngine.Macro.Actions.Delay;
 using MacroEngine.Macro.Actions.Keyboard;
 using MacroEngine.Macro.Actions.Mouse;
 using System;
-using Loamen.KeyMouseHook;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,16 +38,6 @@ namespace MacroEngine
         private readonly DelayedAction delay = new DelayedAction();
         public static Timer updateTimer;
 
-        private bool IsRecording = false;
-
-        public const Keys Key_Play = Keys.F10;
-        public const Keys Key_Record = Keys.F9;
-
-        private readonly KeyMouseFactory hookSub = new KeyMouseFactory(Hook.GlobalEvents());
-        private readonly KeyboardWatcher keyboardSub;
-        private readonly KeyboardWatcher keybindSub;
-        private readonly MouseWatcher mouseSub;
-
         public Point lastMousePos = new Point(0, 0);
 
         public Form1()
@@ -62,109 +51,9 @@ namespace MacroEngine
             updateTimer.Interval = 100;
             updateTimer.Tick += UpdateTimer_Tick;
 
-            keyboardSub = hookSub.GetKeyboardWatcher();
-            mouseSub = hookSub.GetMouseWatcher();
-            keyboardSub.OnKeyboardInput += GlobalHookHandler;
-            keybindSub = new KeyMouseFactory(Hook.GlobalEvents()).GetKeyboardWatcher();
-            keybindSub.OnKeyboardInput += ShortcutHandler;
-            keybindSub.Start(Hook.GlobalEvents());
-            mouseSub.OnMouseInput += GlobalHookHandler;
+            Hooks.Initialize();
 
             FillMacroGrid();
-        }
-
-        private void ShortcutHandler(object sender, MacroEvent e)
-        {
-            if (e.KeyMouseEventType != MacroEventType.KeyUp) return;
-            var keyEvent = (KeyEventArgs)e.EventArgs;
-            switch (keyEvent.KeyCode)
-            {
-                case Key_Record:
-                    RecordHook();
-                    break;
-            }
-        }
-
-        public void RecordHook()
-        {
-            if (IsRecording)
-            {
-                Console.WriteLine("Disabling Hook");
-                IsRecording = false;
-            }
-            else
-            {
-                Console.WriteLine("Enabling Hook");
-                IsRecording = true;
-                StartWatch(Hook.GlobalEvents());
-            }
-        }
-
-        private void GlobalHookHandler(object sender, MacroEvent e)
-        {
-            if (!IsRecording)
-                return;
-
-            if (e.KeyMouseEventType == MacroEventType.KeyUp || e.KeyMouseEventType == MacroEventType.KeyDown)
-            {
-                var keyEvent = (KeyEventArgs)e.EventArgs;
-                switch (keyEvent.KeyCode)
-                {
-                    case Key_Play:
-                    case Key_Record:
-                        return;
-                }
-            }
-
-            var currentMacro = MacroManager.macroList[MacroManager.currentMacroIndex];
-            Value value;
-            switch (e.EventArgs)
-            {
-                case MouseEventExtArgs mouseEvent:
-                    e.EventArgs = new MouseEventArgs(mouseEvent.Button, mouseEvent.Clicks, mouseEvent.X, mouseEvent.Y, mouseEvent.Delta);
-                    if (mouseEvent.Button == MouseButtons.None && lastMousePos != new Point(0, 0))
-                    {
-                        break;
-                    }
-                    Console.WriteLine(mouseEvent.Button);
-
-                    if (mouseEvent.X != lastMousePos.X && mouseEvent.Y != lastMousePos.Y)
-                    {
-                        Value mouseMoveValue = new Value();
-                        mouseMoveValue.x = mouseEvent.X;
-                        mouseMoveValue.y = mouseEvent.Y;
-                        MouseAction mouseMoveAction = new MouseAction(mouseMoveValue, MacroEventType.MouseMove.ToString(), MouseAction.MouseActionType.Move);
-                        currentMacro.actionList.Add(mouseMoveAction);
-                    }
-
-                    value = new Value();
-                    value.x = mouseEvent.X;
-                    value.y = mouseEvent.Y;
-                    value.key = mouseEvent.Button.ToString();
-                    value.delay = e.TimeSinceLastEvent;
-                    MouseAction mouse_action = new MouseAction(value, e.KeyMouseEventType.ToString() + "[" + e.TimeSinceLastEvent + "ms]", MouseAction.MouseActionType.Press);
-                    currentMacro.actionList.Add(mouse_action);
-
-                    FillMacroGrid();
-                    lastMousePos = new Point(mouseEvent.X, mouseEvent.Y);
-                    break;
-
-                case KeyEventArgsExt keyEvent:
-                    e.EventArgs = new KeyEventArgs(keyEvent.KeyData);
-                    if (keyEvent.KeyData == Keys.Escape)
-                    {
-                        RecordHook();
-                        return;
-                    }
-                    Console.WriteLine(keyEvent.KeyData);
-                    value = new Value();
-                    value.key = keyEvent.KeyData.ToString();
-                    value.delay = e.TimeSinceLastEvent;
-                    KeyboardAction action = new KeyboardAction(value, e.KeyMouseEventType.ToString() + "[" + e.TimeSinceLastEvent + "ms]", KeyboardAction.KeyboardActionType.PressAndRelease, keyEvent.KeyData.ToString());
-                    currentMacro.actionList.Add(action);
-                    FillMacroGrid();
-                    break;
-            }
         }
 
         public void FillMacroGrid()
@@ -206,6 +95,11 @@ namespace MacroEngine
         }
 
         // --- Events ---
+
+        private void Hooks_UpdateDataGrid(object sender, EventArgs e)
+        {
+            FillMacroGrid();
+        }
 
         private void MouseActionForm_SubmitButtonClicked(object sender, EventArgs e)
         {
@@ -251,8 +145,8 @@ namespace MacroEngine
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            updateTimer.Start();
-            MacroManager.macroList[MacroManager.currentMacroIndex].Play();
+            if (MacroManager.macroList.Count > 0)
+                MacroManager.macroList[MacroManager.currentMacroIndex].Play();
         }
 
         private void UpdateTimer_Tick(object sender, EventArgs e)
@@ -262,18 +156,25 @@ namespace MacroEngine
 
         private void recordButton_Click(object sender, EventArgs e)
         {
-            RecordHook();
-        }
-
-        private void StartWatch(IKeyboardMouseEvents events = null)
-        {
-            keyboardSub.Start(events);
-            mouseSub.Start(events);
+            if (MacroManager.macroList.Count <= 0)
+            {
+                MessageBox.Show("Please create a macro first.", "No macro");
+                return;
+            }
+            if (!Hooks.IsRecording)
+            {
+                Hooks.Subscribe();
+                Hooks.IsRecording = true;
+                Hooks.ResetTimeStamp();
+                Hooks.UpdateDataGridEvent += Hooks_UpdateDataGrid;
+                return;
+            }
+            Hooks.Unsubscribe();
+            Hooks.IsRecording = false;
         }
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            RecordHook();
         }
     }
 }

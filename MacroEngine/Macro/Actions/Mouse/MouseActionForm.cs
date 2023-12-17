@@ -14,8 +14,6 @@ using static MacroEngine.Macro.Actions.MouseAction;
 
 namespace MacroEngine.Macro.Actions.Mouse
 {
-
-
     public partial class MouseActionForm : Form
     {
         public event EventHandler SubmitButtonClicked;
@@ -138,7 +136,7 @@ namespace MacroEngine.Macro.Actions.Mouse
                     }
                     this.value.x = float.Parse(xTextbox.Text);
                     this.value.y = float.Parse(yTextbox.Text);
-                    if(mouseActionKey == MouseButton.None)
+                    if (mouseActionKey == MouseButton.None)
                     {
                         MessageBox.Show("Please select a mouse key.", "Invalid parameters");
                         return;
@@ -179,10 +177,6 @@ namespace MacroEngine.Macro.Actions.Mouse
 
         private void setPositionBtn_Click(object sender, EventArgs e)
         {
-            if (!Hooks.IsHooked)
-            {
-                Hooks.SetHook();
-            }
         }
 
         private void MainForm_MouseClick(object sender, MouseEventArgs e)
@@ -198,13 +192,11 @@ namespace MacroEngine.Macro.Actions.Mouse
         }
     }
 
-
     public class OverlayForm : Form
     {
         private const int WS_EX_LAYERED = 0x80000;
         private const int WS_EX_TRANSPARENT = 0x20;
         private const int GWL_EXSTYLE = -20;
-
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern IntPtr GetWindowLongPtr(IntPtr hWnd, int nIndex);

@@ -14,19 +14,20 @@ namespace MacroEngine.Macro.Actions
         public enum KeyboardActionType
         {
             None,
+            KeyUp,
+            KeyDown,
             PressAndRelease,
             HoldAndRelease,
             Combo
         }
 
-        public KeyboardAction(Value _value, string description, KeyboardActionType type, string key, int holdTime = 0)
+        public KeyboardAction(Value _value, string description, KeyboardActionType type, int holdTime = 0)
         {
             actionType = ActionType.Keyboard;
             value = _value;
             Description = description;
             HoldTime = holdTime;
             keyboardActionType = type;
-            keyboardKey = key;
         }
 
         private void ExecuteKeyPress()
@@ -45,6 +46,16 @@ namespace MacroEngine.Macro.Actions
             Input.Keyboard.HoldKey(value.key, value.delay);
         }
 
+        private void ExecuteKeyDown()
+        {
+            Input.Keyboard.KeyDown(value._key);
+        }
+
+        private void ExecuteKeyUp()
+        {
+            Input.Keyboard.KeyUp(value._key);
+        }
+
         public override void Execute()
         {
             switch (keyboardActionType)
@@ -52,9 +63,19 @@ namespace MacroEngine.Macro.Actions
                 case KeyboardActionType.PressAndRelease:
                     ExecuteKeyPress();
                     break;
+
                 case KeyboardActionType.HoldAndRelease:
                     ExecuteKeyHold();
                     break;
+
+                case KeyboardActionType.KeyUp:
+                    ExecuteKeyUp();
+                    break;
+
+                case KeyboardActionType.KeyDown:
+                    ExecuteKeyDown();
+                    break;
+
                 default:
                     break;
             }

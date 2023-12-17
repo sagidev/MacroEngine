@@ -77,7 +77,7 @@ namespace MacroEngine.Macro.Actions.Keyboard
                     break;
             }
             value.key = keyboardKey;
-            KeyboardAction action = new KeyboardAction(this.value, desc, keyboardActionType, keyboardKey);
+            KeyboardAction action = new KeyboardAction(this.value, desc, keyboardActionType);
             MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
             SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
             this.Close();

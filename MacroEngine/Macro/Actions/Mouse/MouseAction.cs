@@ -15,7 +15,9 @@ namespace MacroEngine.Macro.Actions
             Move,
             Drag,
             Hold,
-            Press
+            Press,
+            MouseDown,
+            MouseUp
         }
 
         public MouseAction(Value _value, string description, MouseActionType type)
@@ -45,29 +47,87 @@ namespace MacroEngine.Macro.Actions
                 case "Left":
                     key = MouseButton.Left;
                     break;
+
                 case "Middle":
                     key = MouseButton.Middle;
                     break;
+
                 case "Right":
                     key = MouseButton.Right;
                     break;
+
                 default:
                     key = MouseButton.None;
                     break;
             }
             if (key == MouseButton.None)
                 return;
-            
+
             Input.Mouse.PressMouse(key);
         }
 
         private void ExecuteMouseDrag()
         {
-            
         }
 
         private void ExecuteMouseHold()
         {
+        }
+
+        private void ExecuteMouseDown()
+        {
+            if (value.key == MouseButton.None.ToString())
+                return;
+
+            MouseButton key;
+            switch (value.key.ToString())
+            {
+                case "Left":
+                    key = MouseButton.Left;
+                    break;
+
+                case "Middle":
+                    key = MouseButton.Middle;
+                    break;
+
+                case "Right":
+                    key = MouseButton.Right;
+                    break;
+
+                default:
+                    key = MouseButton.None;
+                    break;
+            }
+            Input.Mouse.MoveMouse(value.x, value.y);
+            Input.Mouse.MouseDown(key);
+        }
+
+        private void ExecuteMouseUp()
+        {
+            if (value.key == MouseButton.None.ToString())
+                return;
+
+            MouseButton key;
+            switch (value.key.ToString())
+            {
+                case "Left":
+                    key = MouseButton.Left;
+                    break;
+
+                case "Middle":
+                    key = MouseButton.Middle;
+                    break;
+
+                case "Right":
+                    key = MouseButton.Right;
+                    break;
+
+                default:
+                    key = MouseButton.None;
+                    break;
+            }
+            Input.Mouse.MoveMouse(value.x, value.y);
+            Input.Mouse.MouseUp(key);
         }
 
         public override void Execute()
@@ -77,18 +137,30 @@ namespace MacroEngine.Macro.Actions
                 case MouseActionType.Move:
                     ExecuteMouseMove();
                     break;
+
                 case MouseActionType.Press:
                     ExecuteMousePress();
                     break;
+
                 case MouseActionType.Drag:
                     ExecuteMouseDrag();
                     break;
+
                 case MouseActionType.Hold:
                     ExecuteMouseHold();
                     break;
+
+                case MouseActionType.MouseDown:
+                    ExecuteMouseDown();
+                    break;
+
+                case MouseActionType.MouseUp:
+                    ExecuteMouseUp();
+                    break;
+
                 default:
                     break;
-            }   
+            }
         }
 
         public MouseActionType mouseActionType = MouseActionType.None;
