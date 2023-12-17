@@ -165,7 +165,16 @@ namespace MacroEngine.Macro.Actions.Mouse
             }
 
             MouseAction action = new MouseAction(this.value, description, mouseActionType);
-            MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
+            //MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
+            //Add action to macroList actionList in the index selectedActionIndex
+            if (Form1.selectedActionIndex == -1 || Form1.selectedActionIndex == 0)
+            {
+                MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
+            }
+            else
+            {
+                MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Insert(Form1.selectedActionIndex, action);
+            }
             SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
             this.Close();
         }

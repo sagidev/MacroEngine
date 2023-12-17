@@ -37,6 +37,7 @@ namespace MacroEngine
     {
         private readonly DelayedAction delay = new DelayedAction();
         public static Timer updateTimer;
+        public static int selectedActionIndex = 0;
 
         public Point lastMousePos = new Point(0, 0);
 
@@ -176,6 +177,15 @@ namespace MacroEngine
         private void macroGrid_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             MacroManager.macroList[MacroManager.currentMacroIndex].actionList.RemoveAt(e.Row.Index);
+        }
+
+        private void macroGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            //if (macroGrid.SelectedRows[0].Index != -1)
+            //{
+            //    selectedActionIndex = macroGrid.SelectedRows[0].Index;
+            //    Console.WriteLine(selectedActionIndex);
+            //}
         }
     }
 }

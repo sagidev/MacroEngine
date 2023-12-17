@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.playButton = new System.Windows.Forms.Button();
             this.macroBox = new System.Windows.Forms.GroupBox();
             this.stopButton = new System.Windows.Forms.Button();
@@ -325,17 +325,18 @@
             this.macroGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.macroGrid.RowHeadersWidth = 51;
             this.macroGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.macroGrid.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.macroGrid.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.macroGrid.RowTemplate.Height = 24;
             this.macroGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.macroGrid.ShowCellToolTips = false;
             this.macroGrid.ShowEditingIcon = false;
             this.macroGrid.Size = new System.Drawing.Size(773, 479);
             this.macroGrid.TabIndex = 0;
+            this.macroGrid.SelectionChanged += new System.EventHandler(this.macroGrid_SelectionChanged);
             this.macroGrid.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.macroGrid_UserDeletingRow);
             // 
             // Action

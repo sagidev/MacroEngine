@@ -78,7 +78,14 @@ namespace MacroEngine.Macro.Actions.Keyboard
             }
             value.key = keyboardKey;
             KeyboardAction action = new KeyboardAction(this.value, desc, keyboardActionType);
-            MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
+            if (Form1.selectedActionIndex == -1 || Form1.selectedActionIndex == 0)
+            {
+                MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
+            }
+            else
+            {
+                MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Insert(Form1.selectedActionIndex, action);
+            }
             SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
             this.Close();
         }
