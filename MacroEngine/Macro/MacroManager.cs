@@ -46,7 +46,7 @@ namespace MacroEngine.Macro
             value2.x = 250;
             value2.y = 250;
             Value value3 = new Value();
-            value3.delay = 2000;
+            value3.delay = 500;
             MouseAction m1 = new MouseAction(value1, "Move", MouseAction.MouseActionType.Move);
             MouseAction m2 = new MouseAction(value2, "Move", MouseAction.MouseActionType.Move);
             DelayAction d1 = new DelayAction(value3, "Delay");

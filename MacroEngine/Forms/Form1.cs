@@ -173,8 +173,9 @@ namespace MacroEngine
             Hooks.IsRecording = false;
         }
 
-        private void stopButton_Click(object sender, EventArgs e)
+        private void macroGrid_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
+            MacroManager.macroList[MacroManager.currentMacroIndex].actionList.RemoveAt(e.Row.Index);
         }
     }
 }
