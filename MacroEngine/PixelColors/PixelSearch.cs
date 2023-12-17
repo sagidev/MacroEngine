@@ -14,9 +14,6 @@ namespace MacroEngine.PixelColors
 {
     public class PixelSearch
     {
-        Bitmap bmp = new Bitmap(1, 1);
-        private int monitor;
-        
         public System.Drawing.Color GetPixelColor(int x, int y)
         {
             IntPtr hdc = NativeImports.GetDC(IntPtr.Zero);
@@ -28,18 +25,13 @@ namespace MacroEngine.PixelColors
             return color;
         }
 
-        public Point[] Search(Rectangle rect, Color Pixel_Color, int Shade_Variation)
+        public static Point[] Search(Rectangle rect, Color Pixel_Color, int Shade_Variation)
         {
             ArrayList points = new ArrayList();
             Bitmap RegionIn_Bitmap = new Bitmap(rect.Width, rect.Height, PixelFormat.Format24bppRgb);
 
-            if (monitor >= Screen.AllScreens.Length)
-            {
-                monitor = 0;
-            }
-
-            int xOffset = Screen.AllScreens[monitor].Bounds.Left;
-            int yOffset = Screen.AllScreens[monitor].Bounds.Top;
+            int xOffset = Screen.AllScreens[0].Bounds.Left;
+            int yOffset = Screen.AllScreens[0].Bounds.Top;
 
             using (Graphics GFX = Graphics.FromImage(RegionIn_Bitmap))
             {

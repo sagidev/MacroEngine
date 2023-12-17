@@ -84,6 +84,13 @@
     <Compile Include="Macro\Actions\Mouse\MouseActionForm.Designer.cs">
       <DependentUpon>MouseActionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Macro\Actions\Pixel\PixelAction.cs" />
+    <Compile Include="Macro\Actions\Pixel\PixelActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Macro\Actions\Pixel\PixelActionForm.Designer.cs">
+      <DependentUpon>PixelActionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Macro\Macro.cs" />
     <Compile Include="Macro\MacroManager.cs" />
     <Compile Include="PixelColors\PixelSearch.cs" />
@@ -100,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Macro\Actions\Mouse\MouseActionForm.resx">
       <DependentUpon>MouseActionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Macro\Actions\Pixel\PixelActionForm.resx">
+      <DependentUpon>PixelActionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

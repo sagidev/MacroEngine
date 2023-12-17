@@ -141,6 +141,7 @@
             this.colorActionButton.TabIndex = 4;
             this.colorActionButton.Text = "Insert Color Detection";
             this.colorActionButton.UseVisualStyleBackColor = false;
+            this.colorActionButton.Click += new System.EventHandler(this.colorActionButton_Click);
             // 
             // delayActionButton
             // 

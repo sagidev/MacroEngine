@@ -14,6 +14,9 @@ namespace MacroEngine.Macro
         public int delay;
         public string key;
         public Keys _key;
+        public int r, g, b;
+        public string hex;
+        public int tries;
 
         public override string ToString()
         {
@@ -29,6 +32,22 @@ namespace MacroEngine.Macro
             if (!string.IsNullOrEmpty(key))
             {
                 output += $"[key: {key}]";
+            }
+            if (_key != Keys.None)
+            {
+                output += $"[key: {_key}]";
+            }
+            if (r != 0 && g != 0 && b != 0)
+            {
+                output += $"[r: {r}, g: {g}, b: {b}]";
+            }
+            if (!string.IsNullOrEmpty(hex))
+            {
+                output += $"[hex: #{hex}]";
+            }
+            if (tries != 0)
+            {
+                output += $"[tries: {tries}]";
             }
 
             return output;

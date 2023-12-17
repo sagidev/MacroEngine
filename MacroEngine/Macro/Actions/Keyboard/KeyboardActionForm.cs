@@ -78,7 +78,7 @@ namespace MacroEngine.Macro.Actions.Keyboard
             }
             value.key = keyboardKey;
             KeyboardAction action = new KeyboardAction(this.value, desc, keyboardActionType);
-            if (Form1.selectedActionIndex == -1 || Form1.selectedActionIndex == 0)
+            if (Form1.selectedActionIndex == -1)
             {
                 MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
             }

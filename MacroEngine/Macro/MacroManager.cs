@@ -16,7 +16,6 @@ namespace MacroEngine.Macro
         {
             macroList = new List<Macro>
             {
-               // GenerateTemplateMacro(),
                 GenerateTemplateMacro2()
             };
         }

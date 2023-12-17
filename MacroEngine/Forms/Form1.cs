@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Action = MacroEngine.Macro.Action;
 using Gma.System.MouseKeyHook;
+using MacroEngine.Macro.Actions.Pixel;
 
 namespace MacroEngine
 {
@@ -39,18 +40,12 @@ namespace MacroEngine
         public static Timer updateTimer;
         public static int selectedActionIndex = 0;
 
-        public Point lastMousePos = new Point(0, 0);
-
         public Form1()
         {
             InitializeComponent();
             MacroManager.Initialize();
             macroListBox.Items.Add(MacroManager.macroList[MacroManager.macroList.Count - 1].Name);
             macroListBox.SelectedIndex = MacroManager.currentMacroIndex;
-
-            updateTimer = new Timer();
-            updateTimer.Interval = 100;
-            updateTimer.Tick += UpdateTimer_Tick;
 
             Hooks.Initialize();
 
@@ -71,14 +66,14 @@ namespace MacroEngine
         private void mouseActionButton_Click(object sender, EventArgs e)
         {
             MouseActionForm mouseActionForm = new MouseActionForm();
-            mouseActionForm.SubmitButtonClicked += MouseActionForm_SubmitButtonClicked;
+            mouseActionForm.SubmitButtonClicked += UpdateDataGridEvent;
             mouseActionForm.ShowDialog();
         }
 
         private void keyboardActionButton_Click(object sender, EventArgs e)
         {
             KeyboardActionForm keyboardForm = new KeyboardActionForm();
-            keyboardForm.SubmitButtonClicked += KeyboardActionForm_SubmitButtonClicked;
+            keyboardForm.SubmitButtonClicked += UpdateDataGridEvent;
             keyboardForm.ShowDialog();
         }
 
@@ -91,28 +86,11 @@ namespace MacroEngine
         private void delayActionButton_Click(object sender, EventArgs e)
         {
             DelayActionForm delayActionForm = new DelayActionForm();
-            delayActionForm.SubmitButtonClicked += DelayActionForm_SubmitButtonClicked;
+            delayActionForm.SubmitButtonClicked += UpdateDataGridEvent;
             delayActionForm.ShowDialog();
         }
 
-        // --- Events ---
-
-        private void Hooks_UpdateDataGrid(object sender, EventArgs e)
-        {
-            FillMacroGrid();
-        }
-
-        private void MouseActionForm_SubmitButtonClicked(object sender, EventArgs e)
-        {
-            FillMacroGrid();
-        }
-
-        private void KeyboardActionForm_SubmitButtonClicked(object sender, EventArgs e)
-        {
-            FillMacroGrid();
-        }
-
-        private void DelayActionForm_SubmitButtonClicked(object sender, EventArgs e)
+        private void UpdateDataGridEvent(object sender, EventArgs e)
         {
             FillMacroGrid();
         }
@@ -150,11 +128,6 @@ namespace MacroEngine
                 MacroManager.macroList[MacroManager.currentMacroIndex].Play();
         }
 
-        private void UpdateTimer_Tick(object sender, EventArgs e)
-        {
-            delay.Update();
-        }
-
         private void recordButton_Click(object sender, EventArgs e)
         {
             if (MacroManager.macroList.Count <= 0)
@@ -167,7 +140,7 @@ namespace MacroEngine
                 Hooks.Subscribe();
                 Hooks.IsRecording = true;
                 Hooks.ResetTimeStamp();
-                Hooks.UpdateDataGridEvent += Hooks_UpdateDataGrid;
+                Hooks.UpdateDataGridEvent += UpdateDataGridEvent;
                 return;
             }
             Hooks.Unsubscribe();
@@ -181,11 +154,15 @@ namespace MacroEngine
 
         private void macroGrid_SelectionChanged(object sender, EventArgs e)
         {
-            //if (macroGrid.SelectedRows[0].Index != -1)
-            //{
-            //    selectedActionIndex = macroGrid.SelectedRows[0].Index;
-            //    Console.WriteLine(selectedActionIndex);
-            //}
+            if (macroGrid.SelectedRows.Count > 0)
+                selectedActionIndex = macroGrid.SelectedRows[0].Index;
+        }
+
+        private void colorActionButton_Click(object sender, EventArgs e)
+        {
+            PixelActionForm pixelActionForm = new PixelActionForm();
+            pixelActionForm.SubmitButtonClicked += UpdateDataGridEvent;
+            pixelActionForm.ShowDialog();
         }
     }
 }

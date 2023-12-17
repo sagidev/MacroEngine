@@ -27,8 +27,6 @@ namespace MacroEngine.Input
         private const uint MOUSEEVENTF_MIDDLEDOWN = 0x0020;
         private const uint MOUSEEVENTF_MIDDLEUP = 0x0040;
 
-        private static bool hasClicked = false;
-
         public static void MoveMouse(float x, float y)
         {
             NativeImports.SetCursorPos((int)x, (int)y);
@@ -103,12 +101,6 @@ namespace MacroEngine.Input
 
             NativeImports.mouse_event(flagsDown, 0, 0, 0, 0);
             NativeImports.mouse_event(flagsUp, 0, 0, 0, 0);
-        }
-
-        public static bool IsLeftMouseButtonClicked()
-        {
-            // Check if the left mouse button is pressed
-            return (Control.MouseButtons & MouseButtons.Left) == MouseButtons.Left;
         }
     }
 }
