@@ -1,4 +1,5 @@
 ﻿using MacroEngine.PixelColors;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,13 +17,17 @@ namespace MacroEngine.Macro.Actions.Pixel
         public Color Pixel_Color;
         public static Rectangle screenRect;
 
-        public PixelAction(Value _value, string description, int holdTime = 0)
+        public PixelAction(Value _value, string description)
         {
             actionType = ActionType.Search;
             value = _value;
             Description = description;
-            HoldTime = holdTime;
             Pixel_Color = ColorTranslator.FromHtml("#" + value.hex);
+        }
+
+        public static Action FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<Action>(json);
         }
 
         public override void Execute()

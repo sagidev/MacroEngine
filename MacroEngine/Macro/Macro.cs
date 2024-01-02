@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace MacroEngine.Macro
 {
@@ -52,6 +54,22 @@ namespace MacroEngine.Macro
 
             return output;
         }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            });
+        }
+
+        public static Macro FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<Macro>(json, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            });
+        }
     }
 
     public class Macro
@@ -78,6 +96,22 @@ namespace MacroEngine.Macro
                 Thread.Sleep(action.value.delay);
             }
             MessageBox.Show("Finished!");
+        }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            });
+        }
+
+        public static Macro FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<Macro>(json, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            });
         }
     }
 }

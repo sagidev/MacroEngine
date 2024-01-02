@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,25 @@ namespace MacroEngine.Macro
         public ActionType actionType;
         public Value value;
         public string Description;
-        public int HoldTime;
 
         public virtual void Execute()
         {
             MessageBox.Show("Action is missing a definition!");
+        }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public static Action FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<Action>(json);
+        }
+
+        public override string ToString()
+        {
+            return $"{actionType} {value}";
         }
     }
 }

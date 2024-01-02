@@ -24,7 +24,7 @@ namespace MacroEngine.Macro.Actions.Delay
             int val = delayBar.Value;
             Value value = new Value();
             value.delay = val;
-            DelayAction action = new DelayAction(value, "Delay", val);
+            DelayAction action = new DelayAction(value, "Delay");
             MacroManager.macroList[MacroManager.currentMacroIndex].actionList.Add(action);
             SubmitButtonClicked?.Invoke(this, EventArgs.Empty);
             this.Close();

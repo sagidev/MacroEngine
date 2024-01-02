@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,12 +22,11 @@ namespace MacroEngine.Macro.Actions
             Combo
         }
 
-        public KeyboardAction(Value _value, string description, KeyboardActionType type, int holdTime = 0)
+        public KeyboardAction(Value _value, string description, KeyboardActionType type)
         {
             actionType = ActionType.Keyboard;
             value = _value;
             Description = description;
-            HoldTime = holdTime;
             keyboardActionType = type;
         }
 

@@ -165,14 +165,26 @@ namespace MacroEngine
             pixelActionForm.ShowDialog();
         }
 
-        private void moveBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void saveMacroBtn_Click(object sender, EventArgs e)
         {
+            MacroManager.SaveMacro(MacroManager.currentMacroIndex);
+        }
 
+        private void importBtn_Click(object sender, EventArgs e)
+        {
+            //open file explorer that will allow to select a macro file json inside current folder
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            openFileDialog.Filter = "json files (*.json)|*.json";
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                MacroManager.macroList.Add(MacroManager.ReadFromJsonFile(openFileDialog.FileName));
+                macroListBox.Items.Add(MacroManager.macroList[MacroManager.macroList.Count - 1].Name);
+                MacroManager.currentMacroIndex = MacroManager.macroList.Count - 1;
+                macroListBox.SelectedIndex = MacroManager.currentMacroIndex;
+                FillMacroGrid();
+            }
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using MacroEngine.Macro.Actions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MacroEngine.Macro
 {
@@ -20,6 +22,22 @@ namespace MacroEngine.Macro
             };
         }
 
+        public static void SaveMacro(int index)
+        {
+            var macro = macroList[index];
+            string jsonString = macro.ToJson();
+            using (StreamWriter writetext = new StreamWriter(macro.Name + ".json"))
+            {
+                writetext.WriteLine(jsonString);
+            }
+        }
+
+        public static Macro ReadFromJsonFile(string filePath)
+        {
+            string jsonString = File.ReadAllText(filePath);
+            return Macro.FromJson(jsonString);
+        }
+
         public static Macro GenerateTemplateMacro()
         {
             Macro macro = new Macro("KeyboardTemplate");
@@ -27,8 +45,9 @@ namespace MacroEngine.Macro
             value1.key = "K";
             Value value2 = new Value();
             value2.key = "D";
-            KeyboardAction k1 = new KeyboardAction(value1, "Press", KeyboardAction.KeyboardActionType.PressAndRelease, 0);
-            KeyboardAction k2 = new KeyboardAction(value2, "Hold", KeyboardAction.KeyboardActionType.HoldAndRelease, 1000);
+            value2.delay = 1000;
+            KeyboardAction k1 = new KeyboardAction(value1, "Press", KeyboardAction.KeyboardActionType.PressAndRelease);
+            KeyboardAction k2 = new KeyboardAction(value2, "Hold", KeyboardAction.KeyboardActionType.HoldAndRelease);
             macro.AddAction(k1);
             macro.AddAction(k2);
 
