@@ -21,12 +21,12 @@ using MacroEngine.Macro.Actions.Pixel;
 namespace MacroEngine
 {
     /* TODO
-     * - Load/Save macros from PC
+     * - Load/Save macros from PC [done]
      * - Handle Mouse/Keyboard Press&Move at once
-     * - Make Delay class working (inside updateTimer)
-     * - Add PixelSearch function to Form1 menu
-     * - Add macro editing in GUI
-     * - Add Action moving in GUI
+     * - Make Delay class working (inside updateTimer) [done]
+     * - Add PixelSearch function to Form1 menu [done]
+     * - Add macro editing in GUI [kind of]
+     * - Add Action moving in GUI [kind of]
      * - Add macro recording [done]
      * - Add macro start on hotkey
      * - Add global settings in droptown top menu in application
@@ -125,7 +125,10 @@ namespace MacroEngine
         private void playButton_Click(object sender, EventArgs e)
         {
             if (MacroManager.macroList.Count > 0)
+            {
+                MacroManager.IsPlaying = true;
                 MacroManager.macroList[MacroManager.currentMacroIndex].Play();
+            }
         }
 
         private void recordButton_Click(object sender, EventArgs e)
@@ -172,7 +175,6 @@ namespace MacroEngine
 
         private void importBtn_Click(object sender, EventArgs e)
         {
-            //open file explorer that will allow to select a macro file json inside current folder
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Environment.CurrentDirectory;
             openFileDialog.Filter = "json files (*.json)|*.json";

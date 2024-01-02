@@ -92,9 +92,15 @@ namespace MacroEngine.Macro
         {
             foreach (Action action in actionList)
             {
+                if (!MacroManager.IsPlaying)
+                {
+                    MessageBox.Show("Macro has been stopped!");
+                    return;
+                }
                 action.Execute();
                 Thread.Sleep(action.value.delay);
             }
+            MacroManager.IsPlaying = false;
             MessageBox.Show("Finished!");
         }
 

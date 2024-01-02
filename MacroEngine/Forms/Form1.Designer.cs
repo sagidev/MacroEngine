@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.playButton = new System.Windows.Forms.Button();
             this.macroBox = new System.Windows.Forms.GroupBox();
             this.stopButton = new System.Windows.Forms.Button();
@@ -66,7 +66,7 @@
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(75, 81);
             this.playButton.TabIndex = 0;
-            this.playButton.Text = "Play";
+            this.playButton.Text = "Play [F10]";
             this.playButton.UseVisualStyleBackColor = false;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
@@ -94,7 +94,7 @@
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(75, 81);
             this.stopButton.TabIndex = 2;
-            this.stopButton.Text = "Stop";
+            this.stopButton.Text = "Stop [F8]";
             this.stopButton.UseVisualStyleBackColor = false;
             // 
             // recordButton
@@ -107,7 +107,7 @@
             this.recordButton.Name = "recordButton";
             this.recordButton.Size = new System.Drawing.Size(75, 81);
             this.recordButton.TabIndex = 1;
-            this.recordButton.Text = "Record";
+            this.recordButton.Text = "Record [F9]";
             this.recordButton.UseVisualStyleBackColor = false;
             this.recordButton.Click += new System.EventHandler(this.recordButton_Click);
             // 
@@ -286,11 +286,11 @@
             this.macroGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.macroGrid.RowHeadersWidth = 51;
             this.macroGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.macroGrid.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.macroGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.macroGrid.RowTemplate.Height = 24;
             this.macroGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.macroGrid.ShowCellToolTips = false;

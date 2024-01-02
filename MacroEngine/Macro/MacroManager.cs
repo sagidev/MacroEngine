@@ -13,6 +13,7 @@ namespace MacroEngine.Macro
     {
         public static int currentMacroIndex = 0;
         public static List<Macro> macroList;
+        public static bool IsPlaying = false;
 
         public static void Initialize()
         {

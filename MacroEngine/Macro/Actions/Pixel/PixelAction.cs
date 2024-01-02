@@ -22,7 +22,10 @@ namespace MacroEngine.Macro.Actions.Pixel
             actionType = ActionType.Search;
             value = _value;
             Description = description;
-            Pixel_Color = ColorTranslator.FromHtml("#" + value.hex);
+            if (value.hex != null)
+            {
+                Pixel_Color = ColorTranslator.FromHtml("#" + value.hex);
+            }
         }
 
         public static Action FromJson(string json)

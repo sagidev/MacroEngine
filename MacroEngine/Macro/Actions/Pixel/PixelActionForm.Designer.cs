@@ -126,14 +126,16 @@
             // 
             // delayBar
             // 
-            this.delayBar.LargeChange = 100;
+            this.delayBar.LargeChange = 1000;
             this.delayBar.Location = new System.Drawing.Point(64, 136);
             this.delayBar.Maximum = 10000;
-            this.delayBar.Minimum = 1;
+            this.delayBar.Minimum = 100;
             this.delayBar.Name = "delayBar";
             this.delayBar.Size = new System.Drawing.Size(104, 45);
+            this.delayBar.SmallChange = 100;
             this.delayBar.TabIndex = 39;
-            this.delayBar.Value = 1;
+            this.delayBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.delayBar.Value = 100;
             this.delayBar.Scroll += new System.EventHandler(this.delayBar_Scroll);
             // 
             // delayLabel

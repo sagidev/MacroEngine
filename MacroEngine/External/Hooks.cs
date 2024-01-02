@@ -21,6 +21,7 @@ namespace MacroEngine.External
 
         public const Keys Key_Play = Keys.F10;
         public const Keys Key_Record = Keys.F9;
+        public const Keys Key_Stop = Keys.F8;
 
         public static bool IsHolding = false;
         public static bool IsRecording = false;
@@ -66,6 +67,18 @@ namespace MacroEngine.External
 
         private static void GlobalShortcutHandler(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Key_Stop && MacroManager.macroList.Count > 0 && MacroManager.IsPlaying)
+            {
+                MacroManager.IsPlaying = false;
+                return;
+            }
+
+            if (e.KeyCode == Key_Play && MacroManager.macroList.Count > 0)
+            {
+                MacroManager.macroList[MacroManager.currentMacroIndex].Play();
+                return;
+            }
+
             if (e.KeyCode == Key_Record)
             {
                 if (IsRecording)
