@@ -164,5 +164,15 @@ namespace MacroEngine
             pixelActionForm.SubmitButtonClicked += UpdateDataGridEvent;
             pixelActionForm.ShowDialog();
         }
+
+        private void moveBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveMacroBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
