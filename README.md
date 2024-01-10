@@ -14,6 +14,8 @@ Pixel-based Macro Solution is a C# application built with Windows Forms, designe
 
 - **MouseKeyHook Integration**: Efficiently hook and detect mouse and keyboard inputs during macro recording.
 
+- **Mouse/Keyboard Emulation**: Emulate keyboard and mouse with low level "user32.dll" native imports with keybd_event and mouse_event functions.
+
 - **Macro Structure**: The code is organized around the "Macro" class, which contains a list of "Action" classes. Different action types, such as `DelayAction`, `KeyboardAction`, `MouseAction`, and `PixelAction`, inherit from the base "Action" class. The execution of these actions is managed through the `MacroManager`.
 
 ## Getting Started
