@@ -73,11 +73,6 @@ namespace MacroEngine.Macro.Actions.Pixel
             this.Close();
         }
 
-        private void triesNumeric_ValueChanged(object sender, EventArgs e)
-        {
-            triesLabel.Text = triesNumeric.Value.ToString();
-        }
-
         private void delayBar_Scroll(object sender, EventArgs e)
         {
             delayLabel.Text = delayBar.Value.ToString() + "ms";

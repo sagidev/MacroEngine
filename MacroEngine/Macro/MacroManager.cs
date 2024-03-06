@@ -1,4 +1,5 @@
 ﻿using MacroEngine.Macro.Actions;
+using MacroEngine.Macro.Actions.Pixel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,7 +20,8 @@ namespace MacroEngine.Macro
         {
             macroList = new List<Macro>
             {
-                GenerateTemplateMacro2()
+                GenerateTemplatePixelMacro()
+                //GenerateTemplateMacro2()
             };
         }
 
@@ -37,6 +39,28 @@ namespace MacroEngine.Macro
         {
             string jsonString = File.ReadAllText(filePath);
             return Macro.FromJson(jsonString);
+        }
+
+        public static Macro GenerateTemplatePixelMacro()
+        {
+            Macro macro = new Macro("PianoTiles macro");
+            Value value1 = new Value();
+            value1.hex = "000000";
+            value1.tries = 150;
+            value1.delay = 100;
+            PixelAction pixelAction = new PixelAction(value1, "PixelSearch");
+            macro.AddAction(pixelAction);
+            macro.AddAction(pixelAction);
+            macro.AddAction(pixelAction);
+            macro.AddAction(pixelAction);
+            macro.AddAction(pixelAction);
+            macro.AddAction(pixelAction);
+            macro.AddAction(pixelAction);
+            macro.AddAction(pixelAction);
+            macro.AddAction(pixelAction);
+            macro.AddAction(pixelAction);
+            macro.AddAction(pixelAction);
+            return macro;
         }
 
         public static Macro GenerateTemplateMacro()
