@@ -67,4 +67,3 @@ namespace MacroEngine.External
         public delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
     }
 }
-

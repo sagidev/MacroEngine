@@ -25,22 +25,22 @@ namespace MacroEngine.PixelColors
             return color;
         }
 
-        public static Point[] Search(Rectangle rect, Color Pixel_Color, int Shade_Variation)
+        public static Point[] Search(Rectangle rect, Color color)
         {
-            ArrayList points = new ArrayList();
             Bitmap RegionIn_Bitmap = new Bitmap(rect.Width, rect.Height, PixelFormat.Format24bppRgb);
+            ArrayList points = new ArrayList();
 
             int xOffset = Screen.AllScreens[0].Bounds.Left;
             int yOffset = Screen.AllScreens[0].Bounds.Top;
+
+            BitmapData RegionIn_BitmapData = RegionIn_Bitmap.LockBits(new Rectangle(0, 0, RegionIn_Bitmap.Width, RegionIn_Bitmap.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            int[] f_color = new int[3] { color.B, color.G, color.R };
 
             using (Graphics GFX = Graphics.FromImage(RegionIn_Bitmap))
             {
                 GFX.CopyFromScreen(rect.X + xOffset, rect.Y + yOffset, 0, 0, rect.Size, CopyPixelOperation.SourceCopy);
             }
-            BitmapData RegionIn_BitmapData = RegionIn_Bitmap.LockBits(new Rectangle(0, 0, RegionIn_Bitmap.Width, RegionIn_Bitmap.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-            int[] Formatted_Color = new int[3] { Pixel_Color.B, Pixel_Color.G, Pixel_Color.R }; //bgr
 
-            //Czy mozna uzywac unsafe
             unsafe
             {
                 for (int y = 0; y < RegionIn_BitmapData.Height; y++)
@@ -48,9 +48,9 @@ namespace MacroEngine.PixelColors
                     byte* row = (byte*)RegionIn_BitmapData.Scan0 + (y * RegionIn_BitmapData.Stride);
                     for (int x = 0; x < RegionIn_BitmapData.Width; x++)
                     {
-                        if (row[x * 3] >= (Formatted_Color[0] - Shade_Variation) & row[x * 3] <= (Formatted_Color[0] + Shade_Variation)) //blue
-                            if (row[(x * 3) + 1] >= (Formatted_Color[1] - Shade_Variation) & row[(x * 3) + 1] <= (Formatted_Color[1] + Shade_Variation)) //green
-                                if (row[(x * 3) + 2] >= (Formatted_Color[2] - Shade_Variation) & row[(x * 3) + 2] <= (Formatted_Color[2] + Shade_Variation)) //red
+                        if (row[x * 3] >= (f_color[0]) & row[x * 3] <= (f_color[0]))
+                            if (row[(x * 3) + 1] >= (f_color[1]) & row[(x * 3) + 1] <= (f_color[1]))
+                                if (row[(x * 3) + 2] >= (f_color[2]) & row[(x * 3) + 2] <= (f_color[2]))
                                     points.Add(new Point(x + rect.X, y + rect.Y));
                     }
                 }

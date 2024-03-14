@@ -36,16 +36,14 @@ namespace MacroEngine.Macro.Actions.Pixel
         public override void Execute()
         {
             numberOfTries = value.tries;
-            //Rectangle(0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height
             screenRect = new Rectangle(815, 520, 275, 200);
             int tries = 0;
             while (tries < numberOfTries)
             {
-                var points = PixelSearch.Search(screenRect, Pixel_Color, 0);
+                var points = PixelSearch.Search(screenRect, Pixel_Color);
                 if (points.Length > 0)
                 {
                     Input.Mouse.MoveMouse(points[0].X + 10, points[0].Y);
-                    //MessageBox.Show("Found pixel at: " + points[0].X + ", " + points[0].Y);
                     Input.Mouse.PressMouse(Input.MouseButton.Left);
                     break;
                 }

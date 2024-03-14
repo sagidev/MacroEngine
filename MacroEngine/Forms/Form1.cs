@@ -20,20 +20,6 @@ using MacroEngine.Macro.Actions.Pixel;
 
 namespace MacroEngine
 {
-    /* TODO
-     * - Load/Save macros from PC [done]
-     * - Handle Mouse/Keyboard Press&Move at once
-     * - Make Delay class working (inside updateTimer) [done]
-     * - Add PixelSearch function to Form1 menu [done]
-     * - Add macro editing in GUI [kind of]
-     * - Add Action moving in GUI [kind of]
-     * - Add macro recording [done]
-     * - Add macro start on hotkey
-     * - Add global settings in droptown top menu in application
-     *
-     * wzorzec command - https://www.codeproject.com/Articles/15207/Design-Patterns-Command-Pattern
-    */
-
     public partial class Form1 : Form
     {
         private readonly DelayedAction delay = new DelayedAction();

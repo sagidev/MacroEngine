@@ -72,7 +72,6 @@ namespace MacroEngine.Macro.Actions.Keyboard
 
                 case KeyboardActionType.HoldAndRelease:
                     this.value.delay = keyboardDelayBar.Value;
-                    // val += " [" + keyboardDelayBar.Value.ToString() + "ms]";
                     desc += "Hold and Release";
                     break;
             }

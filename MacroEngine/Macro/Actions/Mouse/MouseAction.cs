@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
 
 namespace MacroEngine.Macro.Actions
 {
@@ -69,10 +71,54 @@ namespace MacroEngine.Macro.Actions
 
         private void ExecuteMouseDrag()
         {
+            if (value.x == 0 || value.y == 0)
+                return;
+
+            if (value.delay <= 0)
+                return;
+
+            float endX = value.x;
+            float endY = value.y;
+            float startX = Cursor.Position.X;
+            float startY = Cursor.Position.Y;
+
+            const int steps = 100;
+            float deltaX = (endX - startX) / steps;
+            float deltaY = (endY - startY) / steps;
+
+            for (int i = 0; i <= steps; i++)
+            {
+                float currentX = startX + deltaX * i;
+                float currentY = startY + deltaY * i;
+                Input.Mouse.MoveMouse(currentX, currentY);
+                System.Threading.Thread.Sleep(value.delay / steps);
+            }
         }
 
         private void ExecuteMouseHold()
         {
+            MouseButton key;
+            switch (value.key.ToString())
+            {
+                case "Left":
+                    key = MouseButton.Left;
+                    break;
+
+                case "Middle":
+                    key = MouseButton.Middle;
+                    break;
+
+                case "Right":
+                    key = MouseButton.Right;
+                    break;
+
+                default:
+                    key = MouseButton.None;
+                    break;
+            }
+            Input.Mouse.MouseDown(key);
+            System.Threading.Thread.Sleep(value.delay);
+            Input.Mouse.MouseUp(key);
         }
 
         private void ExecuteMouseDown()

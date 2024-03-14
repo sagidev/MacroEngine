@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.playButton = new System.Windows.Forms.Button();
             this.macroBox = new System.Windows.Forms.GroupBox();
             this.stopButton = new System.Windows.Forms.Button();
@@ -39,6 +39,7 @@
             this.keyboardActionButton = new System.Windows.Forms.Button();
             this.mouseActionButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.importBtn = new System.Windows.Forms.Button();
             this.saveMacroBtn = new System.Windows.Forms.Button();
             this.deleteMacroBtn = new System.Windows.Forms.Button();
             this.createNewMacroBtn = new System.Windows.Forms.Button();
@@ -48,7 +49,6 @@
             this.Action = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.importBtn = new System.Windows.Forms.Button();
             this.macroBox.SuspendLayout();
             this.InputBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -198,6 +198,20 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
+            // importBtn
+            // 
+            this.importBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.importBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.importBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.importBtn.Location = new System.Drawing.Point(99, 43);
+            this.importBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.importBtn.Name = "importBtn";
+            this.importBtn.Size = new System.Drawing.Size(83, 22);
+            this.importBtn.TabIndex = 4;
+            this.importBtn.Text = "Import";
+            this.importBtn.UseVisualStyleBackColor = false;
+            this.importBtn.Click += new System.EventHandler(this.importBtn_Click);
+            // 
             // saveMacroBtn
             // 
             this.saveMacroBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -286,11 +300,11 @@
             this.macroGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.macroGrid.RowHeadersWidth = 51;
             this.macroGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.macroGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.macroGrid.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.macroGrid.RowTemplate.Height = 24;
             this.macroGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.macroGrid.ShowCellToolTips = false;
@@ -323,20 +337,6 @@
             this.Label.Name = "Label";
             this.Label.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Label.Width = 300;
-            // 
-            // importBtn
-            // 
-            this.importBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.importBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.importBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.importBtn.Location = new System.Drawing.Point(99, 43);
-            this.importBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.importBtn.Name = "importBtn";
-            this.importBtn.Size = new System.Drawing.Size(83, 22);
-            this.importBtn.TabIndex = 4;
-            this.importBtn.Text = "Import";
-            this.importBtn.UseVisualStyleBackColor = false;
-            this.importBtn.Click += new System.EventHandler(this.importBtn_Click);
             // 
             // Form1
             // 
