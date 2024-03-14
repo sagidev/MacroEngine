@@ -1,4 +1,4 @@
-# Pixel-based Macro Solution
+# MacroEngine
 
 Pixel-based Macro Solution is a C# application built with Windows Forms, designed for recording and playing macros with a pixel-search feature. This project utilizes the Newtonsoft.Json framework for the configuration system and the MouseKeyHook library for hooking and detecting mouse and keyboard inputs during macro recording. The software enables users to create new macros, import and export macro files, and manipulate existing macros by manually adding or deleting mouse/keyboard/pixel-search/delay functions.
 
